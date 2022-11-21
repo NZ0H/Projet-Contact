@@ -45,6 +45,8 @@ nom_feuille=wb.sheetnames
 
 
 liste_titre_tableau=[]
+num_prenom=[]
+num_nom=[]
 #test1
 """
 for i in nom_feuille:
@@ -59,7 +61,16 @@ for i in nom_feuille:
     sheet=wb[i]
     for row in (sheet.columns,sheet.values):
         for a in row :
-            print(a)
+            for i in range(len(a)):
+                print(a[i])
+                if a[i]=='Prénom':
+                    num_prenom.append(i)
+
+                if a[i]=='Nom' or a[i]=='NOM' or a[i]=='Nom ' or a[i]=='NOM ':
+                    num_nom.append(i)
+
+            print(num_prenom,num_nom)
+
 
 """
     for j, col in enumerate(sheet.columns, 1):
