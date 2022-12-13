@@ -1,119 +1,152 @@
-"""IMPORTATION DES BIBLIOTHEQUE UTILE AU FONCTION DU PROGRAMME"""
+import openpyxl
+import argparse
 
-import numpy as np
-import pandas as pd
-import openpyxl as xl
-from openpyxl import Workbook,load_workbook
+#Fichier pour tester la suppression des lignes None
 
-""" forme de l'execution en ligne de commande linux"""
-#./nom_projet.py --input-file fichier_annee1.xls fichier_annee2.xls  --contacts liste_contacts.vcf --output-dir ./../html
+def fichier_excel(file):
+    workbook = openpyxl.load_workbook(file, data_only = True)
+    titres_onglets = workbook.sheetnames
+    onglet = workbook[titres_onglets[0]]
 
-"""TOUTE LES INFORMATION DES TABLEAUX SERONT STOCKER DANS CHAQUES CATHEGORIE ADEQUAT"""
+    nb_none=0
 
-data_siret=[]
-data_nom_entreprise=[]
-data_ville=[]
-data_adresse=[]
-data_code_postal=[]
-data_pays=[]
+    listes_data_depart = [] #stocke toute les lignes
+    listes_data_traiter = []
 
-
-
-""" CREER UNE VARIABLE QUI REMPLIE UN TABLEAU SI IL EST VIDE, IL DOIT AVOIR LA MEME LONGUEUR UE LES AUTRES  """
-def input(file):
-    data=pd.read_excel(file,engine='openpyxl')
-
-    for id,column in enumerate(data.columns):
-
-        if column=='Entreprise':
-
-            for i in range(len(data)):                  # Si le nom de la colonne égal Entreprise alors on parcourt ligne Entreprise et on ajoute chaque Entreprise dans la liste data_nom_entreprise
-                data_nom_entreprise.append(data.iloc[i,id])
-            for i in data_nom_entreprise:
-                if i == 'Entreprise' :                   # Si le nom 'Entreprise' est présent dans la liste alors tout les mots appelés 'Entreprise' seront supprimer
-                    data_nom_entreprise.remove('Entreprise')
-
-        if column=='ADRENTR1':                          # Si le nom de la colonne égal ADRENTR1 alors on parcourt ligne ADRENTR1 et on ajoute chaque adrsse d'entreprise dans la liste data_adresse
-            for i in range(len(data)):
-                data_adresse.append(data.iloc[i,id])
-            for i in data_nom_entreprise:
-                if i == 'ADRENTR1' :                     # Si le nom ADRENTR1 est présent dans la liste alors tout les mots appelés 'ADRENTR1' seront supprimer
-                    data_adresse.remove('ADRENTR1')
-
-        if column=='LOCALITE':                          # Si le nom de la colonne égal LOCALITE alors on parcourt ligne LOCALITE et on ajoute chaque ville dans la liste data_ville
-            for i in range(len(data)):
-                data_ville.append(data.iloc[i,id])
-            for i in data_nom_entreprise:
-                if i == 'LOCALITE' :                     # Si le nom LOCALITE est présent dans la liste alors tout les mots appelés 'LOCALITE' seront supprimer
-                    data_ville.remove('LOCALITE')
-
-        if column=='CODPOST':                           # Si le nom de la colonne égal CODPOST alors on parcourt ligne CODPOST et on ajoute chaque code postal dans la liste data_code_postal
-            for i in range(len(data)):
-                data_code_postal.append(data.iloc[i,id])
-            for i in data_nom_entreprise:                # Si le nom 'CODPOST' est présent dans la liste alors tout les mots appelés 'CODPOST' seront supprimer
-                if i == 'CODPOST' :
-                    data_code_postal.remove('CODPOST')
-
-        if column=='Pays':                             # Si le nom de la colonne égal Pays alors on parcourt ligne Pays et on ajoute chaque pays dans la liste data_pays
-            for i in range(len(data)):
-                data_pays.append(data.iloc[i,id])
-            for i in data_nom_entreprise:               # Si le nom 'Pays' est présent dans la liste alors tout les mots appelés 'Pays' seront supprimer
-                if i == 'Pays' :
-                    data_pays.remove('Pays')
-
-    return data_nom_entreprise,data_ville,data_adresse,data_code_postal
+    data_nom_entreprise=[]
+    data_lieu=[]
+    data_sujet=[]
+    data_tuteur=[]
+    data_tel=[]
+    data_mail=[]
+    data_code_postal=[]
 
 
-print(input('stage 2005.xlsx'))
+    for row in onglet.values: #ajoute les lignes dans la liste lignes
+
+        listes_data_depart.append(list(row))
+
+    for r in range(len(listes_data_depart)):        #parcourt les listes présente dans lignes
+
+        for non in listes_data_depart[r]:       #parcourt liste de liste pour avoir les valeurs individuelles
+            if non == None:
+                nb_none+=1
 
 
+        if len(listes_data_depart[r])==nb_none:     # vide la liste remplie de non
+            listes_data_depart[r].clear()
+        nb_none=0
+
+    for valeur in listes_data_depart :
+        if len(valeur)!=0:
+            listes_data_traiter.append(valeur)
+
+    for titre in range(len(listes_data_traiter[0])):
+
+        if listes_data_traiter[0][titre]=="Organisme d'accueil":
+            for colonne in range(len(listes_data_traiter)):
+                data_nom_entreprise.append(listes_data_traiter[colonne][titre])
+
+        if listes_data_traiter[0][titre]=='Lieu':  # Si le nom de la colonne égal ADRENTR1 alors on parcourt ligne ADRENTR1 et on ajoute chaque adrsse d'entreprise dans la liste data_adresse
+            for colonne in range(len(listes_data_traiter)):
+                data_lieu.append(listes_data_traiter[colonne][titre])
+
+        if listes_data_traiter[0][titre]=='Sujet':                          # Si le nom de la colonne égal LOCALITE alors on parcourt ligne LOCALITE et on ajoute chaque ville dans la liste data_ville
+            for colonne in range(len(listes_data_traiter)):
+                data_sujet.append(listes_data_traiter[colonne][titre])
+
+        if listes_data_traiter[0][titre]=='Tuteur entreprise':                             # Si le nom de la colonne égal Pays alors on parcourt ligne Pays et on ajoute chaque pays dans la liste data_pays
+            for colonne in range(len(listes_data_traiter)):
+                data_tuteur.append(listes_data_traiter[colonne][titre])
+
+        if listes_data_traiter[0][titre]=='Contact tel':
+            for colonne in range(len(listes_data_traiter)):
+                data_tel.append(listes_data_traiter[colonne][titre])
+
+        if listes_data_traiter[0][titre]=='Mail':
+            for colonne in range(len(listes_data_traiter)):
+                data_mail.append(listes_data_traiter[colonne][titre])
+
+    
+        
+            
+    
 
 
-"""supprimer les chiffres générés dans la colonne excel"""
+    workbook.close()
+    return data_nom_entreprise,data_lieu,data_sujet,data_tuteur,data_tel,data_mail
 
-def contact(file):
+valeur_tmp=fichier_excel('Entreprises_stage_21_22.xlsx')
+print(valeur_tmp)
+
+
+def contact(new_file):
+    all_value=valeur_tmp
+    contenu_cvf=['NOM;','PRENOM;','ENTR;','LIEU;','ADR;','POSTE;','EMAIL;','TEL;']
+
     """
     Convertir la liste des fichiers séléctionné et en faire un seul fichier au format vcf
-
-    Toute les collones à faire dans le fichiers .xlsx
-    colone 1 : siret
+    Toute les colones à faire dans le fichiers .xlsx
     colone 2 : nom_entreprise
     colone 3 : adresse
     colone 4 : ville
     colone 5 : code_postal
-    colone 6 : pays
+    data_nom_entreprise=[]
+    data_lieu=[]
+    data_sujet=[]
+    data_tuteur=[]
+    data_tel=[]
+    data_mail=[]
+    data_code_postal=[]
     """
 
 
-    all_value = input (file)
-    print(len(all_value[0]))
-    print(len(all_value[1]))
-    print(len(all_value[2]))
-    print(len(all_value[3]))
-
-
-
-    print(all_value[0])
-    wb=Workbook()
-    ws = wb.active
-    ws.title = 'Test'
-    wb.save(file)
-
-    donnee=pd.DataFrame({"nom_entreprise":all_value[0]})
-    datatoexcel= pd.ExcelWriter(file)
-    donnee.to_excel(datatoexcel)
-    datatoexcel.save()
-
-
-contact('test2.xlsx')
-
-
-
-def output(dir):
-    """"
-    Création du tableau dans le fichier html
     """
-    pass
+
+    Permet de di
+    nom_prenom=['INFO Test','NOUVEAU Test Encore']
+    lettre_maj=0
+    for i in range(len(nom_prenom)):
+        while nom_prenom[i][lettre_maj].isupper()!=False:
+            lettre_maj+=1
+        
+    print("nom",nom_prenom[i][:int(lettre_maj)],'prenom',nom_prenom[i][int(lettre_maj)+1:])
+    """
+    
+
+
+    if new_file[len(new_file)-4:] == 'xlsx':
+        """
+        Toute les colones à faire dans le fichiers .xlsx
+        colone nom et prenom
+        colonne entreprise
+        colonne fonction
+        colonne email
+        colonne e-mail
+        colonne téléphone
+        """
+        print(new_file[len(new_file)-5:])
+
+    if new_file[len(new_file)-5:] == 'vcard':
+
+        """
+        faire un format txt
+        NOM;
+        PRENOM;
+        ENTR;
+        POSTE;
+        EMAIL;
+        TEL;
+
+        """
+
+        for valeur in range(len(all_value)):
+            #with open(new_file, 'w') as writefile:
+                #writefile.write("BEGIN:VCARD\n")
+            for data in range(len(valeur)):
+                    #writefile.write(contenu_cvf[data]+valeur[data]+"\n")
+                
+        pass            
 
 
 
@@ -121,14 +154,4 @@ def output(dir):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+print(contact('test.vcard'))
