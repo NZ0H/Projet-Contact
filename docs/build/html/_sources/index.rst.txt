@@ -10,7 +10,7 @@ Welcome to Projet-Contact's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-
+   code
 
 Indices and tables
 ==================
