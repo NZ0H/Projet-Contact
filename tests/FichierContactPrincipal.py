@@ -148,7 +148,35 @@ def contact(new_file):
                 
         pass            
 
+def page(test):
+    """Modifier os par de la manipulation txt"""
 
+filein = open(sys.argv[1], "r")
+fileout = open("html-table.html", "w")
+data = filein.readlines()
+
+table = "<table>\n"
+
+# Create the table's column headers
+header = data[0].split(",")
+table += "  <tr>\n"
+for column in header:
+    table += "    <th>{0}</th>\n".format(column.strip())
+table += "  </tr>\n"
+
+# Create the table's row data
+for line in data[1:]:
+    row = line.split(",")
+    table += "  <tr>\n"
+    for column in row:
+        table += "    <td>{0}</td>\n".format(column.strip())
+    table += "  </tr>\n"
+
+table += "</table>"
+
+fileout.writelines(table)
+fileout.close()
+filein.close()
 
 
 
