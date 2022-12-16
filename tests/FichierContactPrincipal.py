@@ -4,7 +4,7 @@ import argparse
 #Fichier pour tester la suppression des lignes None
 
 def fichier_excel(file):
-    workbook = openpyxl.load_workbook(file, data_only = True)
+    workbook = openpyxl.load_workbook("./Projet-Contact/data/Stages/"+file, data_only = True)
     titres_onglets = workbook.sheetnames
     onglet = workbook[titres_onglets[0]]
 
@@ -22,6 +22,7 @@ def fichier_excel(file):
     data_code_postal=[]
     data_prenom_tuteur=['Prenom']
     data_nom_tuteur=['Nom']
+    
     lettre_maj=0
 
     for row in onglet.values: #ajoute les lignes dans la liste lignes
