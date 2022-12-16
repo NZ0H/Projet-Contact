@@ -71,10 +71,12 @@ def fichier_excel(file):
 
 
     for i in range(len(data_tuteur)):
-        print(data_tuteur[i][:1])
-        if data_tuteur[i][:2] == 'Mr':
-            print('lo')
+        
+        if data_tuteur[i][:2] == 'Mr' or data_tuteur[i][:2] == 'Mm':
+            
             lettre_maj+=3
+        print(data_tuteur[i][int(lettre_maj)+1:])
+
         while data_tuteur[i][lettre_maj].isupper()!=False:
             lettre_maj+=1
         
@@ -84,9 +86,9 @@ def fichier_excel(file):
         lettre_maj=0
 
     workbook.close()
-    return data_nom_tuteur,data_prenom_tuteur
+    return data_nom_tuteur,data_prenom_tuteur,data_tuteur
 
-valeur_tmp=fichier_excel('Entreprises_stage_21_22.xlsx')
+valeur_tmp=fichier_excel('Entreprises_stage_2020.xlsx')
 
 
 
