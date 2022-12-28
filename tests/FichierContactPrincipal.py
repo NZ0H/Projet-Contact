@@ -2,9 +2,15 @@ import openpyxl
 import argparse
 
 #Fichier pour tester la suppression des lignes None
+parser = argparse.ArgumentParser()
+parser.add_argument('--file',type=str,nargs='+')
+args=parser.parse_args()
+args=args.file
 
-def fichier_excel(file):
-    workbook = openpyxl.load_workbook(file, data_only = True)
+
+
+def fichier_excel(args):
+    workbook = openpyxl.load_workbook('../data/Stages/'+args, data_only = True)
     titres_onglets = workbook.sheetnames
     onglet = workbook[titres_onglets[0]]
 
@@ -25,10 +31,10 @@ def fichier_excel(file):
     """ data ayant était traité"""
     data_code_postal=[]
 
-    data_prenom_tuteur=['Prenom']
-    data_nom_tuteur=['Nom']
-    data_civilite_tuteur=['Civilite']
-    data_code_postal=['Code Postal']
+    data_prenom_tuteur=[]
+    data_nom_tuteur=[]
+    data_civilite_tuteur=[]
+    data_code_postal=[]
     data_ville=[]
 
     nom_prenom_tmp=[]
@@ -59,48 +65,61 @@ def fichier_excel(file):
         if listes_data_traiter[0][titre]=="Organisme d'accueil":
             for colonne in range(len(listes_data_traiter)):
                 data_nom_entreprise.append(listes_data_traiter[colonne][titre])
-
+            data_nom_entreprise.remove("Organisme d'accueil")
         if listes_data_traiter[0][titre]=='Lieu':
             for colonne in range(len(listes_data_traiter)):
                 data_lieu.append(listes_data_traiter[colonne][titre])
-
+            data_lieu.remove('Lieu')
         if listes_data_traiter[0][titre]=='Sujet':
             for colonne in range(len(listes_data_traiter)):
                 data_sujet.append(listes_data_traiter[colonne][titre])
-
+            data_sujet.remove('Sujet')
         if listes_data_traiter[0][titre]=='Tuteur entreprise':
             for colonne in range(len(listes_data_traiter)):
                 data_tuteur.append(listes_data_traiter[colonne][titre])
-            data_tuteur.pop(0)
+            data_tuteur.remove('Tuteur entreprise')
         if listes_data_traiter[0][titre]=='Contact tel':
             for colonne in range(len(listes_data_traiter)):
                 data_tel.append(listes_data_traiter[colonne][titre])
-
+            data_tel.remove('Contact tel')
         if listes_data_traiter[0][titre]=='Mail':
             for colonne in range(len(listes_data_traiter)):
                 data_mail.append(listes_data_traiter[colonne][titre])
-
+            data_mail.remove('Mail')
+            
     """séparation nom prenom civilite """
-
+    print(data_tuteur)
     for i in range(len(data_tuteur)):
-        nom_prenom_tmp.append(data_tuteur[i].split())
+        if data_tuteur[i]==None:
+            nom_prenom_tmp.append(data_tuteur[i])
+        else:
+            nom_prenom_tmp.append(data_tuteur[i].split())
+
     for info in range(len(nom_prenom_tmp)):
-        data_civilite_tuteur.append(nom_prenom_tmp[info][0])
-        del nom_prenom_tmp[info][0]
-        for sex in range(len(nom_prenom_tmp[info])):
+        print(nom_prenom_tmp[info][0])
+        if nom_prenom_tmp[info][0] ==None:
+            data_civilite_tuteur.append('Non renseigné')
+            data_prenom_tuteur.append('Non renseigné')
+            data_nom_tuteur.append('Non renseigné')
+            del nom_prenom_tmp[info][0]
+        else:
+            data_civilite_tuteur.append(nom_prenom_tmp[info][0])
+            del nom_prenom_tmp[info][0]
+            for sex in range(len(nom_prenom_tmp[info])):
 
-            if nom_prenom_tmp[info][sex].isupper() == True :
-                nom_tmp.append(nom_prenom_tmp[info][sex])
-            else :
-                prenom_tmp.append(nom_prenom_tmp[info][sex])
+                if nom_prenom_tmp[info][sex].isupper() == True :
+                    nom_tmp.append(nom_prenom_tmp[info][sex])
+                else :
+                    prenom_tmp.append(nom_prenom_tmp[info][sex])
 
-        data_nom_tuteur.append(" ".join(nom_tmp))
-        nom_tmp.clear()
-        data_prenom_tuteur.append(" ".join(prenom_tmp))
-        prenom_tmp.clear()
+            data_nom_tuteur.append(" ".join(nom_tmp))
+            nom_tmp.clear()
+            data_prenom_tuteur.append(" ".join(prenom_tmp))
+            prenom_tmp.clear()
 
-    """ separation code postal et ville"""
 
+    """separation code postal et ville"""
+    
     for i in range(len(data_lieu)):
         data_code_postal.append('Champs vide')
         valeur_tmp.append(data_lieu[i].split())
@@ -117,43 +136,90 @@ def fichier_excel(file):
 
         data_ville.append(" ".join(valeur))
         valeur.clear()
-
+    
     workbook.close()
-    return data_code_postal,data_ville,data_civilite_tuteur
+    return data_nom_entreprise,data_tuteur,data_tel,data_mail
 
-valeur_tmp=fichier_excel('Entreprises_stage_2020.xlsx')
-print(valeur_tmp)
-
+valeur_tmp=[]
+for f in args :
+    valeur_tmp.append(fichier_excel(f))
 
 
 def contact(new_file):
     all_value=valeur_tmp
-    print(all_value)
 
+    data_nom_entreprise=[]
+    data_ville=[]
+    data_code_postal=[]
+    data_sujet=[]
+    data_civilite_tuteur=[]
+    data_nom_tuteur=[]
+    data_prenom_tuteur=[]
+    data_tel=[]
+    data_mail=[]
+
+    for liste in range(len(all_value)):
+        if liste == 1 :
+            for valeur in all_value[liste][0]:
+                data_nom_entreprise.append(valeur)
+
+        if liste == 2 :
+            for valeur in all_value[liste][0]:
+                data_ville.append(valeur)
+
+        if liste == 3 :
+            for valeur in all_value[liste][0]:
+                data_code_postal.append(valeur)
+
+        if liste == 4 :
+            for valeur in all_value[liste][0]:
+                data_sujet.append(valeur)
+
+        if liste == 5 :
+            for valeur in all_value[liste][0]:
+                data_civilite_tuteur.append(valeur)
+
+        if liste == 6 :
+            for valeur in all_value[liste][0]:
+                data_nom_tuteur.append(valeur)
+
+        if liste == 7 :
+            for valeur in all_value[liste][0]:
+                data_prenom_tuteur.append(valeur)
+
+        if liste == 8 :
+            for valeur in all_value[liste][0]:
+                data_tel.append(valeur)
+        if liste == 9 :
+            for valeur in all_value[liste][0]:
+                data_mail.append(valeur)
+    
     if new_file[len(new_file)-4:] == 'xlsx':
-        """
-        Toute les colones à faire dans le fichiers .xlsx
-        colone nom et prenom
-        colonne entreprise
-        colonne fonction
-        colonne email
-        colonne e-mail
-        colonne téléphone
-        """
+        
         wb_out = openpyxl.Workbook()
         #accès à la première feuille du fichier
         ws1 = wb_out.active
         ws1.title = "Etudiants"
 
         # ajout entête des colonnes
-        ws1.append(["Nom", "Prénom", "Note"])
+        ws1.append(["Nom Entreprise","Ville","Code Postal","Sujet","Civilité","Nom","Prénom","Téléphone","Email"])
 
 
-        for row in donnees:
-            ws1.append(row)
+        for row in len(data_nom_entreprise):
 
-            #écriture du fichier
-        wb_out.save(filename = 'out.xlsx')
+            ws1.append(data_nom_entreprise[row])
+            ws1.append(data_ville[row])
+            ws1.append(data_sujet[row])
+            ws1.append(data_civilite_tuteur[row])
+            ws1.append(data_nom_tuteur[row])
+            ws1.append(data_prenom_tuteur[row])
+            ws1.append(data_tel[row])   
+            ws1.append(data_mail[row]) 
+   
+            
+
+        
+        wb_out.save(filename = new_file)
 
 
     if new_file[len(new_file)-5:] == 'vcard':
@@ -176,6 +242,8 @@ def contact(new_file):
                     #writefile.write(contenu_cvf[data]+valeur[data]+"\n")
 
         """
+
+
 
 def page(test):
     """Modifier os par de la manipulation txt"""
