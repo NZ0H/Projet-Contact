@@ -2,6 +2,7 @@ import openpyxl
 import argparse
 
 #Fichier pour tester la suppression des lignes None
+"""
 def argument():
     parser = argparse.ArgumentParser()
     parser.add_argument('--file',type=str,nargs='+')
@@ -9,6 +10,12 @@ def argument():
     parser.add_argument('--nom_page',type=str)
     args=parser.parse_args()
     return args
+
+"""
+
+
+
+
 
 def fichier_excel(args):
     workbook = openpyxl.load_workbook('../data/Stages/'+args, data_only = True)
@@ -50,7 +57,6 @@ def fichier_excel(args):
         listes_data_depart.append(list(row))
 
     for r in range(len(listes_data_depart)):        #parcourt les listes présente dans lignes
-        print(listes_data_depart[r])
         for non in listes_data_depart[r]:       #parcourt liste de liste pour avoir les valeurs individuelles
             if non == None:
                 nb_none+=1
@@ -136,9 +142,12 @@ def fichier_excel(args):
         valeur.clear()
     
     workbook.close()
+    print(len(data_sujet),len(data_civilite_tuteur))
     return data_nom_entreprise,data_ville,data_code_postal,data_sujet,data_civilite_tuteur,data_nom_tuteur,data_prenom_tuteur,data_tel,data_mail
-
+print(fichier_excel('Entreprises_stage_2021.xlsx'))
 valeur_tmp=[]
+
+"""
 
 def contact(args_sortie):
     all_value=valeur_tmp
@@ -203,9 +212,9 @@ def contact(args_sortie):
     print(data_mail)
     if args_sortie[len(args_sortie)-4:] == 'xlsx':
         print(data_code_postal)
-        
-        """
-        
+    
+      
+      
         wb_out = openpyxl.Workbook()
         #accès à la première feuille du fichier
         ws1 = wb_out.active
@@ -225,71 +234,19 @@ def contact(args_sortie):
             ws1.append(data_prenom_tuteur[row])
             ws1.append(data_tel[row])   
             ws1.append(data_mail[row]) 
-   
+        
             
 
         
         wb_out.save(filename = new_file)
-        """
-
-    if args_sortie[len(args_sortie)-5:] == 'vcard':
-
-        """
-        faire un format txt
-        NOM;
-        PRENOM;
-        ENTR;
-        POSTE;
-        EMAIL;
-        TEL;
+  """
 
 
+#arguments=argument()
 
-        for valeur in range(len(all_value)):
-            #with open(new_file, 'w') as writefile:
-                #writefile.write("BEGIN:VCARD\n")
-            for data in range(len(valeur)):
-                    #writefile.write(contenu_cvf[data]+valeur[data]+"\n")
-
-        """
+#for arg in arguments.file :
+    #valeur_tmp.append(fichier_excel(arg))
 
 
+#print(contact(arguments.sortie))
 
-def page(test):
-    """Modifier os par de la manipulation txt"""
-
-    filein = open(sys.argv[1], "r")
-    fileout = open("html-table.html", "w")
-    data = filein.readlines()
-
-    table = "<table>\n"
-
-    # Create the table's column headers
-    header = data[0].split(",")
-    table += "  <tr>\n"
-    for column in header:
-        table += "    <th>{0}</th>\n".format(column.strip())
-    table += "  </tr>\n"
-
-    # Create the table's row data
-    for line in data[1:]:
-        row = line.split(",")
-        table += "  <tr>\n"
-        for column in row:
-            table += "    <td>{0}</td>\n".format(column.strip())
-        table += "  </tr>\n"
-
-    table += "</table>"
-
-    fileout.writelines(table)
-    fileout.close()
-    filein.close()
-
-
-arguments=argument()
-
-for arg in arguments.file :
-    valeur_tmp.append(fichier_excel(arg))
-
-
-print(contact(arguments.sortie))
