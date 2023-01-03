@@ -2,12 +2,13 @@ import openpyxl
 import argparse
 
 #Fichier pour tester la suppression des lignes None
-parser = argparse.ArgumentParser()
-parser.add_argument('--file',type=str,nargs='+')
-args=parser.parse_args()
-args=args.file
-
-
+def argument():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--file',type=str,nargs='+')
+    parser.add_argument('--sortie',type=str)
+    parser.add_argument('--nom_page',type=str)
+    args=parser.parse_args()
+    return args
 
 def fichier_excel(args):
     workbook = openpyxl.load_workbook('../data/Stages/'+args, data_only = True)
@@ -49,6 +50,7 @@ def fichier_excel(args):
         listes_data_depart.append(list(row))
 
     for r in range(len(listes_data_depart)):        #parcourt les listes présente dans lignes
+        print(listes_data_depart[r])
         for non in listes_data_depart[r]:       #parcourt liste de liste pour avoir les valeurs individuelles
             if non == None:
                 nb_none+=1
@@ -87,36 +89,32 @@ def fichier_excel(args):
                 data_mail.append(listes_data_traiter[colonne][titre])
             data_mail.remove('Mail')
             
-    """séparation nom prenom civilite """
-    print(data_tuteur)
+     
+    
     for i in range(len(data_tuteur)):
         if data_tuteur[i]==None:
             nom_prenom_tmp.append(data_tuteur[i])
         else:
             nom_prenom_tmp.append(data_tuteur[i].split())
 
+    print(nom_prenom_tmp)
+
     for info in range(len(nom_prenom_tmp)):
-        print(nom_prenom_tmp[info][0])
-        if nom_prenom_tmp[info][0] ==None:
-            data_civilite_tuteur.append('Non renseigné')
-            data_prenom_tuteur.append('Non renseigné')
-            data_nom_tuteur.append('Non renseigné')
-            del nom_prenom_tmp[info][0]
-        else:
+        
             data_civilite_tuteur.append(nom_prenom_tmp[info][0])
             del nom_prenom_tmp[info][0]
-            for sex in range(len(nom_prenom_tmp[info])):
+            for n_p in range(len(nom_prenom_tmp[info])):
 
-                if nom_prenom_tmp[info][sex].isupper() == True :
-                    nom_tmp.append(nom_prenom_tmp[info][sex])
+                if nom_prenom_tmp[info][n_p].isupper() == True :
+                    nom_tmp.append(nom_prenom_tmp[info][n_p])
                 else :
-                    prenom_tmp.append(nom_prenom_tmp[info][sex])
+                    prenom_tmp.append(nom_prenom_tmp[info][n_p])
 
             data_nom_tuteur.append(" ".join(nom_tmp))
             nom_tmp.clear()
             data_prenom_tuteur.append(" ".join(prenom_tmp))
             prenom_tmp.clear()
-
+    
 
     """separation code postal et ville"""
     
@@ -138,16 +136,12 @@ def fichier_excel(args):
         valeur.clear()
     
     workbook.close()
-    return data_nom_entreprise,data_tuteur,data_tel,data_mail
+    return data_nom_entreprise,data_ville,data_code_postal,data_sujet,data_civilite_tuteur,data_nom_tuteur,data_prenom_tuteur,data_tel,data_mail
 
 valeur_tmp=[]
-for f in args :
-    valeur_tmp.append(fichier_excel(f))
 
-
-def contact(new_file):
+def contact(args_sortie):
     all_value=valeur_tmp
-
     data_nom_entreprise=[]
     data_ville=[]
     data_code_postal=[]
@@ -157,44 +151,60 @@ def contact(new_file):
     data_prenom_tuteur=[]
     data_tel=[]
     data_mail=[]
+    print(all_value)
+   
+    for fichier in range(len(all_value)):
+        for liste in range(len(all_value[fichier])):
+            print(len(all_value[fichier]))
+            if liste == 0 :
+                print('ok')
+                for valeur in all_value[liste][0]:
+                    data_nom_entreprise.append(valeur)
+                print(data_nom_entreprise)
 
-    for liste in range(len(all_value)):
-        if liste == 1 :
-            for valeur in all_value[liste][0]:
-                data_nom_entreprise.append(valeur)
+            if liste == 1 :
+                print('ok')
+                for valeur in all_value[liste][0]:
+                    print(all_value[liste][0])
+                    data_ville.append(valeur)
 
-        if liste == 2 :
-            for valeur in all_value[liste][0]:
-                data_ville.append(valeur)
+            if liste == 2 :
+                print('ok')
+                for valeur in all_value[liste][0]:
+                    print(all_value[liste][0])
+                    data_code_postal.append(valeur)
 
-        if liste == 3 :
-            for valeur in all_value[liste][0]:
-                data_code_postal.append(valeur)
+            if liste == 3 :
+                print('ok')
+                for valeur in all_value[liste][0]:
+                    print(all_value[liste][0])
+                    data_sujet.append(valeur)
 
-        if liste == 4 :
-            for valeur in all_value[liste][0]:
-                data_sujet.append(valeur)
+            if liste == 4 :
+                print('ok')
+                for valeur in all_value[liste][0]:
+                    data_civilite_tuteur.append(valeur)
 
-        if liste == 5 :
-            for valeur in all_value[liste][0]:
-                data_civilite_tuteur.append(valeur)
+            if liste == 5 :
+                print('ok')
+                for valeur in all_value[liste][0]:
+                    data_nom_tuteur.append(valeur)
 
-        if liste == 6 :
-            for valeur in all_value[liste][0]:
-                data_nom_tuteur.append(valeur)
+            if liste == 6 :
+                for valeur in all_value[liste][0]:
+                    data_prenom_tuteur.append(valeur)
 
-        if liste == 7 :
-            for valeur in all_value[liste][0]:
-                data_prenom_tuteur.append(valeur)
-
-        if liste == 8 :
-            for valeur in all_value[liste][0]:
-                data_tel.append(valeur)
-        if liste == 9 :
-            for valeur in all_value[liste][0]:
-                data_mail.append(valeur)
-    
-    if new_file[len(new_file)-4:] == 'xlsx':
+            if liste == 7 :
+                for valeur in all_value[liste][0]:
+                    data_tel.append(valeur)
+            if liste == 8 :
+                for valeur in all_value[liste][0]:
+                    data_mail.append(valeur)
+    print(data_mail)
+    if args_sortie[len(args_sortie)-4:] == 'xlsx':
+        print(data_code_postal)
+        
+        """
         
         wb_out = openpyxl.Workbook()
         #accès à la première feuille du fichier
@@ -220,9 +230,9 @@ def contact(new_file):
 
         
         wb_out.save(filename = new_file)
+        """
 
-
-    if new_file[len(new_file)-5:] == 'vcard':
+    if args_sortie[len(args_sortie)-5:] == 'vcard':
 
         """
         faire un format txt
@@ -276,5 +286,10 @@ def page(test):
     filein.close()
 
 
+arguments=argument()
+
+for arg in arguments.file :
+    valeur_tmp.append(fichier_excel(arg))
 
 
+print(contact(arguments.sortie))
