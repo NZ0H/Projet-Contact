@@ -12,13 +12,13 @@ valeur_tmp_fct2=[]
 def argument():
     parser = argparse.ArgumentParser()
     parser.add_argument('--file',type=str,nargs='+')
-    parser.add_argument('--sortie',type=str)
-    parser.add_argument('--nom_page',type=str)
+    parser.add_argument('--sortie',type=str,nargs='+')
+    parser.add_argument('--nom_page',type=str,nargs='+')
     args=parser.parse_args()
     return args
 
 def fichier_excel(args):
-    workbook = openpyxl.load_workbook('../data/Stages/'+args, data_only = True)
+    workbook = openpyxl.load_workbook('../data/Stages/'+ args, data_only = True)
     titres_onglets = workbook.sheetnames
     onglet = workbook[titres_onglets[0]]
     nb_none=0
@@ -124,7 +124,7 @@ def fichier_excel(args):
         data_ville.append(" ".join(valeur))
         valeur.clear()
     workbook.close()
-
+    print(len(data_nom_entreprise))
     return data_nom_entreprise,data_ville,data_code_postal,data_sujet,data_civilite_tuteur,data_nom_tuteur,data_prenom_tuteur,data_tel,data_mail
 
 
@@ -143,10 +143,10 @@ def contact(args_sortie):
    
     for fichier in range(len(all_value)):
         for liste in range(len(all_value[fichier])):
-            print(all_value[fichier][liste])
             if liste == 0 :
                 for valeur in all_value[liste][0]:
                     data_nom_entreprise.append(valeur)
+                print(len(data_nom_entreprise))
             if liste == 1 :
                     for valeur in all_value[fichier][liste]:
                         data_ville.append(valeur)
@@ -174,7 +174,7 @@ def contact(args_sortie):
                 if len(all_value[fichier][liste]) != 0:
                     for valeur in all_value[fichier][liste]:
                         data_mail.append(valeur)
-
+    print(len(data_nom_entreprise))
     if args_sortie[len(args_sortie)-4:] == 'xlsx':
         wb_out = openpyxl.Workbook()
         ws1 = wb_out.active
@@ -186,18 +186,25 @@ def contact(args_sortie):
         wb_out.save('../contact/'+args_sortie)
 
     if args_sortie[len(args_sortie)-5:] == 'vcard':
+        print('on commence')
+        for num_c in range(len(data_nom_tuteur)):
+            if len(data_nom_tuteur[num_c])==0 or len(data_prenom_tuteur)==0 :
+                if len(data_nom_tuteur[num_c])==0 :
+                    data_nom_tuteur[num_c].append('Non_renseigné')
+                else :
+                    data_prenom_tuteur[num_c].append('Non_renseigné')
+            print(len(data_nom_entreprise),len(data_ville),len(data_code_postal),len(data_sujet),len(data_civilite_tuteur),len(data_nom_tuteur),len(data_prenom_tuteur),len(data_tel),len(data_mail))
+            f= open("../contact/Dossier_VCARD/data_{}_{}.vcf".format(data_nom_tuteur[num_c],data_prenom_tuteur[num_c]),"w")
 
-        mkdir("dossier2")
-        f = open("dossier2/data.vcf","w")
-    
-        f.write("BEGIN:VCARD\nVERSION:3.0\n")
-        f.write("FN:{} {}\n".format(data_prenom_tuteur,data_nom_tuteur))
-        f.write("N:{};{};;;\n".format(data_nom_tuteur,data_prenom_tuteur))
-        f.write("item1.EMAIL;TYPE=INTERNET:{}\n".format(data_mail))
-        f.write("item1.X-ABLabel:\nitem2.TEL:{}\n".format(data_tel))
-        f.write("item2.X-ABLabel:\nitem3.ORG:{}\n".format(data_nom_entreprise))
-        f.write("item3.X-ABLabel:\nNOTE:{}\n".format(data_sujet))
-        f.write("CATEGORIES:myContacts\nEND:VCARD")
+            f.write("BEGIN:VCARD\nVERSION:3.0\n")
+            f.write("FN:{} {}\n".format(data_prenom_tuteur[num_c],data_nom_tuteur[num_c]))
+            f.write("N:{};{};;;\n".format(data_nom_tuteur[num_c],data_prenom_tuteur[num_c]))
+            f.write("item1.EMAIL;TYPE=INTERNET:{}\n".format(data_mail[num_c]))
+            f.write("item1.X-ABLabel:\nitem2.TEL:{}\n".format(data_tel[num_c]))
+            f.write("item2.X-ABLabel:\nitem3.ORG:{}\n".format(data_nom_entreprise[num_c]))
+            f.write("item3.X-ABLabel:\nNOTE:{}\n".format(data_sujet[num_c]))
+            f.write("CATEGORIES:myContacts\nEND:VCARD")
+            print('Ca marche')
 
 print(contact('fichier_contact.xlsx'))
 def page_web():
@@ -206,11 +213,14 @@ def page_web():
 
 arguments=argument()
 
-for args in arguments :
-    if args.file == True : 
-        for nb_arg in args.file :
-            valeur_tmp_fct2.append(fichier_excel(nb_arg))
-    if args.sortie == True :
-        for nb_arg in args.sortie :
-            contact(args.sortie)
-    '''mettre pour celui de la page web'''
+for nb_arg in arguments.file :
+    valeur_tmp_fct2.append(fichier_excel(nb_arg))
+    print('FInit')
+
+
+
+
+for nb_arg in arguments.sortie :
+    print(nb_arg)
+    contact(nb_arg)
+    print('test réussi')
