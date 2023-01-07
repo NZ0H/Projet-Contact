@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Anthony Chapus
+N:Chapus;Anthony;;;
+item1.EMAIL;TYPE=INTERNET:mail@gmail.com
+item1.X-ABLabel:
+item2.TEL:0606060606
+item2.X-ABLabel:
+item3.ORG:Orange
+item3.X-ABLabel:
+NOTE:Chef de projet
+CATEGORIES:myContacts
+END:VCARD
