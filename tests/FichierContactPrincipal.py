@@ -1,6 +1,6 @@
 import openpyxl
 import argparse
-from os import mkdir
+import os
 
 ####################################################
 #    BIEN CE PLACER DANS LE REPERTOIRE TEST POUR   #
@@ -234,8 +234,40 @@ def contact(args_sortie):
             print('Ca marche')
 
 print(contact('fichier_contact.xlsx'))
-def page_web():
-    pass
+
+
+def page_web(all_values):
+    nom_fichier = "html"
+    os.makedirs(nom_fichier, exist_ok=True)
+
+    structure = ["Entreprise", "Civilite", "Nom", "Prenom", "Email", "Telephone"]
+    
+    # Extract the data from the xlsx file
+    data = all_values
+    # Créer la structure de la page web
+    f = open(nom_fichier+"/html.html","w")
+    f.write("<!DOCTYPE html>\n")
+    f.write("<head> \n<meta charset='utf-8'>\n")
+    f.write("<link rel='stylesheet' href='style.css'>")
+    f.write("\n<title> Tableau </title> \n</head>")
+    f.write("\n<body>\n")
+
+    # Créer le tableau
+    f.write("<table>\n<tr>")
+
+    for i in structure:
+        f.write("<th>{}</th>".format(i))
+    f.write("</tr>") 
+
+    # Ecris tout les donnée dans le tableau
+    for row in data:
+        f.write("<tr>")
+        for cell in row:
+            f.write("<td>{}</td>".format(cell))
+        f.write("</tr>")
+
+    f.write("</table>\n</body>\n</html>")
+    f.close()
 
 
 arguments=argument()
@@ -243,9 +275,6 @@ arguments=argument()
 for nb_arg in arguments.file :
     valeur_tmp_fct2.append(fichier_excel(nb_arg))
     print('FInit')
-
-
-
 
 for nb_arg in arguments.sortie :
     print(nb_arg)
