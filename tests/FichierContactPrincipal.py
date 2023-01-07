@@ -87,9 +87,9 @@ def fichier_excel(args):
             for colonne in range(len(listes_data_traiter)):
                 data_mail.append(listes_data_traiter[colonne][titre])
             data_mail.remove('Mail')
-            
-     
-    
+
+    workbook.close()
+
     for i in range(len(data_tuteur)):
         if data_tuteur[i]==None:
             nom_prenom_tmp.append(data_tuteur[i])
@@ -123,8 +123,37 @@ def fichier_excel(args):
                 valeur.append(valeur_tmp[i][v])
         data_ville.append(" ".join(valeur))
         valeur.clear()
-    workbook.close()
-    print(len(data_nom_entreprise))
+                
+    for i in range(len(data_nom_entreprise)):        
+        if  len(data_civilite_tuteur)==0 or len(data_code_postal)==0 or len(data_mail)==0 or len(data_sujet)==0 or len(data_ville)==0 or len(data_tel)==0:
+            
+
+            if len(data_civilite_tuteur)==0 :
+                for rep in range(len(data_nom_entreprise)):
+                    data_civilite_tuteur.append('Non_renseigné')
+
+            if len(data_code_postal)==0 :
+                for rep in range(len(data_nom_entreprise)):
+                    data_code_postal.append('Non_renseigné')
+
+            if len(data_mail)==0 :
+                for rep in range(len(data_nom_entreprise)):
+                    data_mail.append('Non_renseigné')
+
+            if len(data_sujet)==0 :
+                for rep in range(len(data_nom_entreprise)):
+                    data_sujet.append('Non_renseigné')
+
+            if len(data_ville)==0 :
+                for rep in range(len(data_nom_entreprise)):
+                    data_ville.append('Non_renseigné')
+
+            if len(data_tel)==0 :
+                for rep in range(len(data_nom_entreprise)):
+                    data_tel.append('Non_renseigné')
+
+    print(len(data_nom_entreprise),len(data_ville),len(data_code_postal),len(data_sujet),len(data_civilite_tuteur),len(data_nom_tuteur),len(data_prenom_tuteur),len(data_tel),len(data_mail))
+
     return data_nom_entreprise,data_ville,data_code_postal,data_sujet,data_civilite_tuteur,data_nom_tuteur,data_prenom_tuteur,data_tel,data_mail
 
 
@@ -140,13 +169,12 @@ def contact(args_sortie):
     data_prenom_tuteur=[]
     data_tel=[]
     data_mail=[]
-   
+
     for fichier in range(len(all_value)):
         for liste in range(len(all_value[fichier])):
             if liste == 0 :
-                for valeur in all_value[liste][0]:
+                for valeur in all_value[fichier][liste]:
                     data_nom_entreprise.append(valeur)
-                print(len(data_nom_entreprise))
             if liste == 1 :
                     for valeur in all_value[fichier][liste]:
                         data_ville.append(valeur)
@@ -164,17 +192,17 @@ def contact(args_sortie):
                         data_nom_tuteur.append(valeur)
 
             if liste == 6 :
-                    for valeur in all_value[fichier][liste]:
-                        data_prenom_tuteur.append(valeur)
+                for valeur in all_value[fichier][liste]:
+                    data_prenom_tuteur.append(valeur)
             if liste == 7 :
-                if len(all_value[fichier][liste]) != 0:
-                    for valeur in all_value[fichier][liste]:
-                        data_tel.append(valeur)
+                for valeur in all_value[fichier][liste]:
+                    data_tel.append(valeur)
             if liste == 8 :
-                if len(all_value[fichier][liste]) != 0:
-                    for valeur in all_value[fichier][liste]:
-                        data_mail.append(valeur)
+                for valeur in all_value[fichier][liste]:
+                    data_mail.append(valeur)
     print(len(data_nom_entreprise))
+    print(len(data_nom_entreprise),len(data_ville),len(data_code_postal),len(data_sujet),len(data_civilite_tuteur),len(data_nom_tuteur),len(data_prenom_tuteur),len(data_tel),len(data_mail))
+
     if args_sortie[len(args_sortie)-4:] == 'xlsx':
         wb_out = openpyxl.Workbook()
         ws1 = wb_out.active
@@ -186,15 +214,14 @@ def contact(args_sortie):
         wb_out.save('../contact/'+args_sortie)
 
     if args_sortie[len(args_sortie)-5:] == 'vcard':
-        print('on commence')
+        
         for num_c in range(len(data_nom_tuteur)):
-            if len(data_nom_tuteur[num_c])==0 or len(data_prenom_tuteur)==0 :
-                if len(data_nom_tuteur[num_c])==0 :
-                    data_nom_tuteur[num_c].append('Non_renseigné')
-                else :
-                    data_prenom_tuteur[num_c].append('Non_renseigné')
+           
+            
+                
+
             print(len(data_nom_entreprise),len(data_ville),len(data_code_postal),len(data_sujet),len(data_civilite_tuteur),len(data_nom_tuteur),len(data_prenom_tuteur),len(data_tel),len(data_mail))
-            f= open("../contact/Dossier_VCARD/data_{}_{}.vcf".format(data_nom_tuteur[num_c],data_prenom_tuteur[num_c]),"w")
+            f= open("../contact/Dossier_VCARD/vcard_{}_{}.vcf".format(data_nom_tuteur[num_c],data_prenom_tuteur[num_c]),"w")
 
             f.write("BEGIN:VCARD\nVERSION:3.0\n")
             f.write("FN:{} {}\n".format(data_prenom_tuteur[num_c],data_nom_tuteur[num_c]))
