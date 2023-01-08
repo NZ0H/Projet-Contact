@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Pascal VUILLAUME
+N:VUILLAUME;Pascal;;;
+item1.EMAIL;TYPE=INTERNET:pascal.vuillaume@orange.com
+item1.X-ABLabel:
+item2.TEL:06 85 80 12 54
+item2.X-ABLabel:
+item3.ORG:ORANGE Unité d'Intervention Sud-Ouest
+item3.X-ABLabel:
+NOTE:None
+CATEGORIES:myContacts
+END:VCARD

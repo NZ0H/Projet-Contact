@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Vincent VIEU
+N:VIEU;Vincent;;;
+item1.EMAIL;TYPE=INTERNET:vincent.vieu@thalesgroup.com
+item1.X-ABLabel:
+item2.TEL:02 38 52 60 59
+item2.X-ABLabel:
+item3.ORG:Thales LAS France SAS
+item3.X-ABLabel:
+NOTE:None
+CATEGORIES:myContacts
+END:VCARD

@@ -17,6 +17,50 @@ def argument():
     args=parser.parse_args()
     return args
 
+"""FONCTION À IMPORTER"""
+def fusion(data):
+    data_nom_entreprise=[]
+    data_ville=[]
+    data_code_postal=[]
+    data_sujet=[]
+    data_civilite_tuteur=[]
+    data_nom_tuteur=[]
+    data_prenom_tuteur=[]
+    data_tel=[]
+    data_mail=[]
+    
+    for fichier in range(len(data)):
+        for liste in range(len(data[fichier])):
+            if liste == 0 :
+                for valeur in data[fichier][liste]:
+                    data_nom_entreprise.append(valeur)
+            if liste == 1 :
+                    for valeur in data[fichier][liste]:
+                        data_ville.append(valeur)
+            if liste == 2 :
+                    for valeur in data[fichier][liste]:
+                        data_code_postal.append(valeur)
+            if liste == 3 :
+                    for valeur in data[fichier][liste]:
+                        data_sujet.append(valeur)
+            if liste == 4 :
+                    for valeur in data[fichier][liste]:
+                        data_civilite_tuteur.append(valeur)
+            if liste == 5 :
+                    for valeur in data[fichier][liste]:
+                        data_nom_tuteur.append(valeur)
+            if liste == 6 :
+                for valeur in data[fichier][liste]:
+                    data_prenom_tuteur.append(valeur)
+            if liste == 7 :
+                for valeur in data[fichier][liste]:
+                    data_tel.append(valeur)
+            if liste == 8 :
+                for valeur in data[fichier][liste]:
+                    data_mail.append(valeur)
+    return data_nom_entreprise,data_ville,data_code_postal,data_sujet,data_civilite_tuteur,data_nom_tuteur,data_prenom_tuteur,data_tel,data_mail
+
+
 def fichier_excel(args):
     workbook = openpyxl.load_workbook('../data/Stages/'+ args, data_only = True)
     titres_onglets = workbook.sheetnames
@@ -126,7 +170,6 @@ def fichier_excel(args):
                 
     for i in range(len(data_nom_entreprise)):        
         if  len(data_civilite_tuteur)==0 or len(data_code_postal)==0 or len(data_mail)==0 or len(data_sujet)==0 or len(data_ville)==0 or len(data_tel)==0:
-            
 
             if len(data_civilite_tuteur)==0 :
                 for rep in range(len(data_nom_entreprise)):
@@ -157,95 +200,52 @@ def fichier_excel(args):
     return data_nom_entreprise,data_ville,data_code_postal,data_sujet,data_civilite_tuteur,data_nom_tuteur,data_prenom_tuteur,data_tel,data_mail
 
 
+
 def contact(args_sortie):
     all_value=valeur_tmp_fct2
 
-    data_nom_entreprise=[]
-    data_ville=[]
-    data_code_postal=[]
-    data_sujet=[]
-    data_civilite_tuteur=[]
-    data_nom_tuteur=[]
-    data_prenom_tuteur=[]
-    data_tel=[]
-    data_mail=[]
-
-    for fichier in range(len(all_value)):
-        for liste in range(len(all_value[fichier])):
-            if liste == 0 :
-                for valeur in all_value[fichier][liste]:
-                    data_nom_entreprise.append(valeur)
-            if liste == 1 :
-                    for valeur in all_value[fichier][liste]:
-                        data_ville.append(valeur)
-            if liste == 2 :
-                    for valeur in all_value[fichier][liste]:
-                        data_code_postal.append(valeur)
-            if liste == 3 :
-                    for valeur in all_value[fichier][liste]:
-                        data_sujet.append(valeur)
-            if liste == 4 :
-                    for valeur in all_value[fichier][liste]:
-                        data_civilite_tuteur.append(valeur)
-            if liste == 5 :
-                    for valeur in all_value[fichier][liste]:
-                        data_nom_tuteur.append(valeur)
-
-            if liste == 6 :
-                for valeur in all_value[fichier][liste]:
-                    data_prenom_tuteur.append(valeur)
-            if liste == 7 :
-                for valeur in all_value[fichier][liste]:
-                    data_tel.append(valeur)
-            if liste == 8 :
-                for valeur in all_value[fichier][liste]:
-                    data_mail.append(valeur)
-    print(len(data_nom_entreprise))
-    print(len(data_nom_entreprise),len(data_ville),len(data_code_postal),len(data_sujet),len(data_civilite_tuteur),len(data_nom_tuteur),len(data_prenom_tuteur),len(data_tel),len(data_mail))
+    colonne=fusion(all_value)
 
     if args_sortie[len(args_sortie)-4:] == 'xlsx':
         wb_out = openpyxl.Workbook()
         ws1 = wb_out.active
         ws1.title = "Etudiants"
-        ws1.append(["Nom Entreprise","Ville","Code Postal","Sujet","Civilité","Nom","Prénom","Téléphone","Email"])
-        for colonne1,colonne2,colonne3,colonne4,colonne5,colonne6,colonne7,colonne8,colonne9 in zip(data_nom_entreprise,data_ville,data_code_postal,data_sujet,data_civilite_tuteur,data_nom_tuteur,data_prenom_tuteur,data_tel,data_mail):
+        ws1.append(["Nom Entreprise","Ville","Code Postal","Sujet","Civilité","Nom","Prénom","Téléphone","Email"])  #"""changerrrrrrrrrrrrrrrrrr"""
+        for colonne1,colonne2,colonne3,colonne4,colonne5,colonne6,colonne7,colonne8,colonne9 in zip(colonne[0],colonne[1],colonne[2],colonne[3],colonne[4],colonne[5],colonne[6],colonne[7],colonne[8]):
             ws1.append([colonne1,colonne2,colonne3,colonne4,colonne5,colonne6,colonne7,colonne8,colonne9])
 
         wb_out.save('../contact/'+args_sortie)
 
     if args_sortie[len(args_sortie)-5:] == 'vcard':
         
-        for num_c in range(len(data_nom_tuteur)):
-           
-            
-                
-
-            print(len(data_nom_entreprise),len(data_ville),len(data_code_postal),len(data_sujet),len(data_civilite_tuteur),len(data_nom_tuteur),len(data_prenom_tuteur),len(data_tel),len(data_mail))
-            f= open("../contact/Dossier_VCARD/vcard_{}_{}.vcf".format(data_nom_tuteur[num_c],data_prenom_tuteur[num_c]),"w")
+        for num_c in range(len(colonne[5])):
+            f= open("../contact/Dossier_VCARD/vcard_{}_{}.vcf".format(colonne[5][num_c],colonne[6][num_c]),"w")
 
             f.write("BEGIN:VCARD\nVERSION:3.0\n")
-            f.write("FN:{} {}\n".format(data_prenom_tuteur[num_c],data_nom_tuteur[num_c]))
-            f.write("N:{};{};;;\n".format(data_nom_tuteur[num_c],data_prenom_tuteur[num_c]))
-            f.write("item1.EMAIL;TYPE=INTERNET:{}\n".format(data_mail[num_c]))
-            f.write("item1.X-ABLabel:\nitem2.TEL:{}\n".format(data_tel[num_c]))
-            f.write("item2.X-ABLabel:\nitem3.ORG:{}\n".format(data_nom_entreprise[num_c]))
-            f.write("item3.X-ABLabel:\nNOTE:{}\n".format(data_sujet[num_c]))
+            f.write("FN:{} {}\n".format(colonne[6][num_c],colonne[5][num_c]))
+            f.write("N:{};{};;;\n".format(colonne[5][num_c],colonne[6][num_c]))
+            f.write("item1.EMAIL;TYPE=INTERNET:{}\n".format(colonne[8][num_c]))
+            f.write("item1.X-ABLabel:\nitem2.TEL:{}\n".format(colonne[7][num_c]))
+            f.write("item2.X-ABLabel:\nitem3.ORG:{}\n".format(colonne[0][num_c]))
+            f.write("item3.X-ABLabel:\nNOTE:{}\n".format(colonne[3][num_c]))
             f.write("CATEGORIES:myContacts\nEND:VCARD")
-            print('Ca marche')
-
-print(contact('fichier_contact.xlsx'))
 
 
-def page_web(all_values):
-    nom_fichier = "html"
-    os.makedirs(nom_fichier, exist_ok=True)
+
+
+def page_web(args):  #args correspond au nom que tu ecrira en ligne de commande, comme tableau.html
+    
+    
+
+    os.makedirs('../html/'+args, exist_ok=True)
 
     structure = ["Entreprise", "Civilite", "Nom", "Prenom", "Email", "Telephone"]
     
-    # Extract the data from the xlsx file
-    data = all_values
+    #data[0] = nom entreprise ect ..
+    data = fusion(valeur_tmp_fct2)
+     
     # Créer la structure de la page web
-    f = open(nom_fichier+"/html.html","w")
+    f = open('../html/'+args,"w")
     f.write("<!DOCTYPE html>\n")
     f.write("<head> \n<meta charset='utf-8'>\n")
     f.write("<link rel='stylesheet' href='style.css'>")
@@ -275,8 +275,12 @@ arguments=argument()
 for nb_arg in arguments.file :
     valeur_tmp_fct2.append(fichier_excel(nb_arg))
     print('FInit')
-
+"""
 for nb_arg in arguments.sortie :
-    print(nb_arg)
     contact(nb_arg)
+    print('test réussi')
+"""
+
+for nb_arg in arguments.nom_page:
+    page_web(nb_arg)
     print('test réussi')
