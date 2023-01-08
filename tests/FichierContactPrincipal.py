@@ -153,6 +153,7 @@ def fichier_excel(args):
             nom_tmp.clear()
             data_prenom_tuteur.append(" ".join(prenom_tmp))
             prenom_tmp.clear()
+
     
 
     """separation code postal et ville"""
@@ -243,9 +244,9 @@ def page_web(args):  #args correspond au nom que tu ecrira en ligne de commande,
     
     #data[0] = nom entreprise ect ..
     data = fusion(valeur_tmp_fct2)
-     
+
     # Créer la structure de la page web
-    f = open('../html/'+args,"w")
+    f = open('../html/tableau/index.html',"w")
     f.write("<!DOCTYPE html>\n")
     f.write("<head> \n<meta charset='utf-8'>\n")
     f.write("<link rel='stylesheet' href='style.css'>")
@@ -255,19 +256,21 @@ def page_web(args):  #args correspond au nom que tu ecrira en ligne de commande,
     # Créer le tableau
     f.write("<table>\n<tr>")
 
-    for i in structure:
-        f.write("<th>{}</th>".format(i))
+    for titre in structure:
+        f.write("<th>{}</th>".format(titre))
     f.write("</tr>") 
 
-    # Ecris tout les donnée dans le tableau
-    for row in data:
-        f.write("<tr>")
-        for cell in row:
-            f.write("<td>{}</td>".format(cell))
+    f.write("<tr>")
+
+    for i in range(len(data[0])):
+        for cell in [data[0][i], data[4][i], data[5][i], data[6][i], data[8][i], data[7][i]]:
+            f.write(f"<td>{cell}</td>")
         f.write("</tr>")
 
     f.write("</table>\n</body>\n</html>")
     f.close()
+
+
 
 
 arguments=argument()
@@ -280,7 +283,6 @@ for nb_arg in arguments.sortie :
     contact(nb_arg)
     print('test réussi')
 """
-
 for nb_arg in arguments.nom_page:
     page_web(nb_arg)
     print('test réussi')
