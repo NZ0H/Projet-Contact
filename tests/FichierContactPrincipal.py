@@ -62,7 +62,7 @@ def fusion(data):
 
 
 def fichier_excel(args):
-    workbook = openpyxl.load_workbook('../data/Stages/'+ args, data_only = True)
+    workbook = openpyxl.load_workbook('../data/'+ args, data_only = True)
     titres_onglets = workbook.sheetnames
     onglet = workbook[titres_onglets[0]]
     nb_none=0
