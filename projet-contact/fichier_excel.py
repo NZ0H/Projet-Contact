@@ -4,6 +4,26 @@ import openpyxl
 
 
 def fichier_excel(args):
+    """
+     creation : Enzo , 11/11/2022
+     derniere modification : 02/01/2023
+
+     La fonction a comme paramètre d'entrée pour le bon fonctionnement : arguments.file -> str
+
+     la fonction permet de traiter un fichier avec différents parametres comme :
+        - suppression des lignes vide
+        - ajoutes les valeurs correspondants à la condition if (listes_data_traiter[0][titre]=="Organisme d'accueil",listes_data_traiter[0][titre]=='Lieu',
+        listes_data_traiter[0][titre]=='Sujet',listes_data_traiter[0][titre]=='Tuteur entreprise',listes_data_traiter[0][titre]=='Contact tel',listes_data_traiter[0][titre]=='Mail') 
+        dans les listes crées
+        - traite le nom,prenom,civilite du champ 'data_tuteur'
+        - traite la ville et le code postal du champ 'data_lieu'
+        - si à la fin une des listes de données est vide, elle est remplie du meme nombre de donnee que la liste de data_nom_entreprise
+
+     ex d'utilisation :
+        
+         python3 projet-contact.py --file Entreprises_stage_2020.xlxs 
+
+    """
     workbook = openpyxl.load_workbook('../data/'+ args, data_only = True)
     titres_onglets = workbook.sheetnames
     onglet = workbook[titres_onglets[0]]
@@ -11,7 +31,7 @@ def fichier_excel(args):
     listes_data_depart = [] 
     listes_data_traiter = []
 
-    """data recupérer directement dans le excel, sans les trier (apres avoir passer l'étape des suppression de ligne de None"""
+    #data recupérer directement dans le excel, sans les trier (apres avoir passer l'étape des suppression de ligne de None)
     data_nom_entreprise=[]
     data_lieu=[]
     data_sujet=[]
@@ -19,7 +39,7 @@ def fichier_excel(args):
     data_tel=[]
     data_mail=[]
 
-    """ data ayant était traité"""
+    #data ayant était traité
     data_code_postal=[]
     data_prenom_tuteur=[]
     data_nom_tuteur=[]
@@ -32,12 +52,12 @@ def fichier_excel(args):
     valeur_tmp=[]
     valeur=[]
 
-
+    #ajouts des valeurs du fichier excel dans la liste 'listes_data_depart'
     for row in onglet.values: 
         listes_data_depart.append(list(row))
 
+    #suppression du contenue de la liste remplie de None
     for ligne in range(len(listes_data_depart)):   
-        
         for non in listes_data_depart[ligne]:
             if non == None:
                 nb_none+=1
@@ -45,10 +65,12 @@ def fichier_excel(args):
             listes_data_depart[ligne].clear()
         nb_none=0
 
+    #si longueur liste différent de 0 alors on ajoute à la listes_data_traiter
     for valeur in listes_data_depart :
         if len(valeur)!=0:
             listes_data_traiter.append(valeur)
 
+    #Traitement des données celon les titres des colonnes, si le titre fait partie des conditions il est ajouté sinon il n'est pas prit en compte
     for titre in range(len(listes_data_traiter[0])):
         if listes_data_traiter[0][titre]=="Organisme d'accueil":
             for colonne in range(len(listes_data_traiter)):
@@ -77,12 +99,13 @@ def fichier_excel(args):
 
     workbook.close()
     
-    for i in range(len(data_tuteur)):
-        if data_tuteur[i]==None:
-            nom_prenom_tmp.append(data_tuteur[i])
+    #traitement de data_tuteur, si None on ajoute None sinon on sépare le champ de donnée dans une liste
+    for d_t in range(len(data_tuteur)):
+        if data_tuteur[d_t]==None:
+            nom_prenom_tmp.append(data_tuteur[d_t])
         else:
-            nom_prenom_tmp.append(data_tuteur[i].split())
-
+            nom_prenom_tmp.append(data_tuteur[d_t].split())
+    #séparation de nomn,prenom,civilite
     for info in range(len(nom_prenom_tmp)):
             data_civilite_tuteur.append(nom_prenom_tmp[info][0])
             del nom_prenom_tmp[info][0]
@@ -95,20 +118,21 @@ def fichier_excel(args):
             nom_tmp.clear()
             data_prenom_tuteur.append(" ".join(prenom_tmp))
             prenom_tmp.clear()
-
-    for i in range(len(data_lieu)):
+    #trie la ville est le code postal 
+    for d_v in range(len(data_lieu)):
         data_code_postal.append('Champs vide')
-        valeur_tmp.append(data_lieu[i].split())
-        for v in range(len(valeur_tmp[i])):
-            """cree liste avec valeur vide"""
-            if valeur_tmp[i][v].isdecimal() == True :
-                data_code_postal[i]=valeur_tmp[i][v]
-            if valeur_tmp[i][v].isalpha() == True :
-                valeur.append(valeur_tmp[i][v])
+        valeur_tmp.append(data_lieu[d_v].split())
+        for v in range(len(valeur_tmp[d_v])):
+            if valeur_tmp[d_v][v].isdecimal() == True :
+                data_code_postal[d_v]=valeur_tmp[d_v][v]
+            if valeur_tmp[d_v][v].isalpha() == True :
+                valeur.append(valeur_tmp[d_v][v])
         data_ville.append(" ".join(valeur))
         valeur.clear()
-                
-    for i in range(len(data_nom_entreprise)):  
+        
+    #si un des champs est vide on ajoute len(data_nom_entreprise) fois 'Nom_renseigné' , len(data_nom_entreprise) car l'objectif de ce (->)
+    #(suite) programme est pour les stages en entreprise donc le champ est forcément remplie (meme si chaque champ de data fait la meme longueur)       
+    for compteur in range(len(data_nom_entreprise)):  
         if  len(data_civilite_tuteur)==0 or len(data_code_postal)==0 or len(data_mail)==0 or len(data_sujet)==0 or len(data_ville)==0 or len(data_tel)==0:
             if len(data_civilite_tuteur)==0 :
                 for rep in range(len(data_nom_entreprise)):
