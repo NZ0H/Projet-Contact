@@ -40,7 +40,6 @@ def contact(args_sortie,valeur_tmp_fct2):
 
     #Creation du fichier .xlsx
     if args_sortie[len(args_sortie)-4:] == 'xlsx':
-      
         wb_out = openpyxl.Workbook()
         ws1 = wb_out.active
         ws1.title = "Etudiants"
