@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Jérôme THÉBERT
+N:THÉBERT;Jérôme;;;
+item1.EMAIL;TYPE=INTERNET:jerome.thebert@openevents.fr
+item1.X-ABLabel:
+item2.TEL:05 49 62 26 03
+item2.X-ABLabel:
+item3.ORG:OPENevents
+item3.X-ABLabel:
+NOTE:Amélioration de l'exploitabilté de la plateforme d'hébergement : Scripting Powershell ; virtualisation (Hyper V, VM Ware) ; Gestion de serveurs (Windows et Linux) ; Gestion interfaces Hardware
+CATEGORIES:myContacts
+END:VCARD

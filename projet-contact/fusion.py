@@ -27,7 +27,7 @@ def fusion(data):
     prenom_tuteur=[]
     tel=[]
     mail=[]
-
+    
     #trie toute les données recuent dans chaques listes
     for fichier in range(len(data)):
         for liste in range(len(data[fichier])):
@@ -58,7 +58,6 @@ def fusion(data):
             if liste == 8 :
                 for valeur in data[fichier][liste]:
                     data_mail.append(valeur)
-
     #ajoute que si le contenue n'est pas present dans la liste
     for num in range(len(data_nom_entreprise)):
         if (data_nom_entreprise[num] not in entreprise) and (data_nom_tuteur[num] not in nom_tuteur) and (data_tel[num] not in tel):

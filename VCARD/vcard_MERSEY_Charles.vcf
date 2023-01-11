@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Charles MERSEY
+N:MERSEY;Charles;;;
+item1.EMAIL;TYPE=INTERNET:charles@frekences.com
+item1.X-ABLabel:
+item2.TEL:06 30 13 02 27
+item2.X-ABLabel:
+item3.ORG:FREKENCES
+item3.X-ABLabel:
+NOTE:Mise en place de réseaux télécoms pour l'évènementiel                                                                                      
+CATEGORIES:myContacts
+END:VCARD

@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Freddy PREAUD
+N:PREAUD;Freddy;;;
+item1.EMAIL;TYPE=INTERNET:fpreaud@nvequipment.com
+item1.X-ABLabel:
+item2.TEL:06 74 89 90 05
+item2.X-ABLabel:
+item3.ORG:NVequipment
+item3.X-ABLabel:
+NOTE:None
+CATEGORIES:myContacts
+END:VCARD

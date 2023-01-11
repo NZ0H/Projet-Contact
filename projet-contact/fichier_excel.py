@@ -3,25 +3,14 @@ import openpyxl
 
 
 
-def fichier_excel(args):
-    """
-     creation : Enzo , 11/11/2022
-     derniere modification : 02/01/2023
+def fichier_excel(args) -> str : 
+    """ Projet-Contact
+    :module:fichier_excel
+    :author : Enzo
+    :created : 11/11/2022
+    :modified : 02/01/2023
 
-     La fonction a comme paramètre d'entrée pour le bon fonctionnement : arguments.file -> str
-
-     la fonction permet de traiter un fichier avec différents parametres comme :
-        - suppression des lignes vide
-        - ajoutes les valeurs correspondants à la condition if (listes_data_traiter[0][titre]=="Organisme d'accueil",listes_data_traiter[0][titre]=='Lieu',
-        listes_data_traiter[0][titre]=='Sujet',listes_data_traiter[0][titre]=='Tuteur entreprise',listes_data_traiter[0][titre]=='Contact tel',listes_data_traiter[0][titre]=='Mail') 
-        dans les listes crées
-        - traite le nom,prenom,civilite du champ 'data_tuteur'
-        - traite la ville et le code postal du champ 'data_lieu'
-        - si à la fin une des listes de données est vide, elle est remplie du meme nombre de donnee que la liste de data_nom_entreprise
-
-     ex d'utilisation :
-        
-         python3 projet-contact.py --file Entreprises_stage_2020.xlxs 
+    
 
     """
     workbook = openpyxl.load_workbook('../data/'+ args, data_only = True)

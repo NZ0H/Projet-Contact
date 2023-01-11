@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Alexandre LEGENDRE
+N:LEGENDRE;Alexandre;;;
+item1.EMAIL;TYPE=INTERNET:a.legendre@ceso-gto.com
+item1.X-ABLabel:
+item2.TEL:05 46 30 07 30
+item2.X-ABLabel:
+item3.ORG:CESO Groupe Télécoms de l'Ouest
+item3.X-ABLabel:
+NOTE:Installation de 3CX, Centrex, routeur Mikrotik, switch et câblage et vidéosurveillance
+CATEGORIES:myContacts
+END:VCARD

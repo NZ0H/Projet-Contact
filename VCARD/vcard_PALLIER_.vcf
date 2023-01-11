@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+FN: PALLIER
+N:PALLIER;;;;
+item1.EMAIL;TYPE=INTERNET:luc.pallier@linkt.fr
+item1.X-ABLabel:
+item2.TEL:242880051
+item2.X-ABLabel:
+item3.ORG:Linkt SAS
+item3.X-ABLabel:
+NOTE:None
+CATEGORIES:myContacts
+END:VCARD

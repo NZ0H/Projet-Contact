@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Nicolas ESSA
+N:ESSA;Nicolas;;;
+item1.EMAIL;TYPE=INTERNET:nessa@superprod.net
+item1.X-ABLabel:
+item2.TEL:05 16 50 00 17
+item2.X-ABLabel:
+item3.ORG:VANILLA SEED
+item3.X-ABLabel:
+NOTE:Monitoring et exploitation des ressources de Render Superprod
+CATEGORIES:myContacts
+END:VCARD

@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+FN: SYLLA
+N:SYLLA;;;;
+item1.EMAIL;TYPE=INTERNET:cSYLLA@groupe-scopelec.fr
+item1.X-ABLabel:
+item2.TEL:07 85 19 43 77
+item2.X-ABLabel:
+item3.ORG:SCOPELEC
+item3.X-ABLabel:
+NOTE:None
+CATEGORIES:myContacts
+END:VCARD

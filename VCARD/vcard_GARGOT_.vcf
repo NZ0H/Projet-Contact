@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+FN: GARGOT
+N:GARGOT;;;;
+item1.EMAIL;TYPE=INTERNET:anthony.gargot@spie.com
+item1.X-ABLabel:
+item2.TEL:05.49.39.37.43
+item2.X-ABLabel:
+item3.ORG:SPIE CITYNETWORKS
+item3.X-ABLabel:
+NOTE:None
+CATEGORIES:myContacts
+END:VCARD

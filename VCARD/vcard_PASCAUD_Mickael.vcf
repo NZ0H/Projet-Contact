@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Mickael PASCAUD
+N:PASCAUD;Mickael;;;
+item1.EMAIL;TYPE=INTERNET:m.pascaud@groupe-convergence.com
+item1.X-ABLabel:
+item2.TEL:05 49 66 77 71
+item2.X-ABLabel:
+item3.ORG:GROUPE CONVERGENCE COM
+item3.X-ABLabel:
+NOTE:Configuration de routeurs Cisco et Microtik - Mise en place de solutions de sécurité pour notre activité opérateur
+CATEGORIES:myContacts
+END:VCARD

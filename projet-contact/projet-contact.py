@@ -1,6 +1,5 @@
 from fichier_excel import fichier_excel
 from contact import contact
-from fusion import fusion
 from page_web import page_web
 import argparse
 
@@ -35,14 +34,9 @@ arguments=argument()
 
 try:
     for nb_arg in arguments.file :
-        print('good1')
         valeur_tmp_fct2.append(fichier_excel(nb_arg))
-        print('good2')
     for nb_arg in arguments.sortie :
-        contact(nb_arg,valeur_tmp_fct2)
-        print('ok')
- 
+        contact(nb_arg,valeur_tmp_fct2) 
     page_web(arguments.dir,valeur_tmp_fct2)
-    print('good4',nb_arg)
 except:
     print("Erreur durant l'utilisation du programme")

@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Nicolas BOUSSEAU
+N:BOUSSEAU;Nicolas;;;
+item1.EMAIL;TYPE=INTERNET:nbousseau@adista.fr
+item1.X-ABLabel:
+item2.TEL:05 47 50 04 20
+item2.X-ABLabel:
+item3.ORG:ADISTA
+item3.X-ABLabel:
+NOTE:Mise en place d'une solution MPLS
+CATEGORIES:myContacts
+END:VCARD

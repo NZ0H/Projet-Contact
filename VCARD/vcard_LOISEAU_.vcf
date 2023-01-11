@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+FN: LOISEAU
+N:LOISEAU;;;;
+item1.EMAIL;TYPE=INTERNET:david.loiseau@orange.com
+item1.X-ABLabel:
+item2.TEL:06 78 43 58 17
+item2.X-ABLabel:
+item3.ORG:ORANGE UI SUD OUEST
+item3.X-ABLabel:
+NOTE:None
+CATEGORIES:myContacts
+END:VCARD

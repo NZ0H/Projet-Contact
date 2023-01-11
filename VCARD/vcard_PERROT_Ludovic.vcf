@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Ludovic PERROT
+N:PERROT;Ludovic;;;
+item1.EMAIL;TYPE=INTERNET:ludovic.perrot@ima.eu
+item1.X-ABLabel:
+item2.TEL:05 49 34 74 83
+item2.X-ABLabel:
+item3.ORG:INTER MUTUELLES ASSISTANCE GIE
+item3.X-ABLabel:
+NOTE:Mise en place de services et configuration d'équipements réseaux.
+CATEGORIES:myContacts
+END:VCARD

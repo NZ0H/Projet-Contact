@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+FN: BECQUET
+N:BECQUET;;;;
+item1.EMAIL;TYPE=INTERNET:sebastien.becquet@mesea.fr
+item1.X-ABLabel:
+item2.TEL:09 72 12 32 97
+item2.X-ABLabel:
+item3.ORG:MESEA
+item3.X-ABLabel:
+NOTE:None
+CATEGORIES:myContacts
+END:VCARD

@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+FN: SIMON
+N:SIMON;;;;
+item1.EMAIL;TYPE=INTERNET:geoffrey.simon@ssi.gouv.fr
+item1.X-ABLabel:
+item2.TEL:01 71 75 84 70
+item2.X-ABLabel:
+item3.ORG:ANSSI (Agence Nationale de la Sécurité des Systèmes d'Information)
+item3.X-ABLabel:
+NOTE:None
+CATEGORIES:myContacts
+END:VCARD

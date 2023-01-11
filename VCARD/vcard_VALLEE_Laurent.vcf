@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Laurent VALLEE
+N:VALLEE;Laurent;;;
+item1.EMAIL;TYPE=INTERNET:lvallee@osmozis.com
+item1.X-ABLabel:
+item2.TEL:06 83 04 76 64
+item2.X-ABLabel:
+item3.ORG:OSMOZIS
+item3.X-ABLabel:
+NOTE:Configuration d'architectures WIFI
+CATEGORIES:myContacts
+END:VCARD

@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Charles-Kévin MICHOT
+N:MICHOT;Charles-Kévin;;;
+item1.EMAIL;TYPE=INTERNET:charles-kevin.michot@orange.com
+item1.X-ABLabel:
+item2.TEL:06 87 82 88 31
+item2.X-ABLabel:
+item3.ORG:ORANGE
+item3.X-ABLabel:
+NOTE:Immersion au sein d'un service de technicien d'intervention.
+CATEGORIES:myContacts
+END:VCARD

@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+FN: SOULIE
+N:SOULIE;;;;
+item1.EMAIL;TYPE=INTERNET:bruno.soulie@interieur.gouv.fr
+item1.X-ABLabel:
+item2.TEL:05 57 19 43 34
+item2.X-ABLabel:
+item3.ORG:Secrétariat Général pour l'Administration du Ministère de l'Intérieur
+item3.X-ABLabel:
+NOTE:None
+CATEGORIES:myContacts
+END:VCARD

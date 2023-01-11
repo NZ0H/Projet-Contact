@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+FN: BAZIRE
+N:BAZIRE;;;;
+item1.EMAIL;TYPE=INTERNET:nicolas.bazire@nxo.eu
+item1.X-ABLabel:
+item2.TEL:02 40 18 75 21
+item2.X-ABLabel:
+item3.ORG:NXO FRANCE
+item3.X-ABLabel:
+NOTE:None
+CATEGORIES:myContacts
+END:VCARD

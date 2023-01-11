@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+FN: MAGNALDI
+N:MAGNALDI;;;;
+item1.EMAIL;TYPE=INTERNET:christophe.magnaldi@interieur.gouv.fr
+item1.X-ABLabel:
+item2.TEL:03-20-08-10-28
+item2.X-ABLabel:
+item3.ORG:SGAMI NORD / DSIC (direction des systèmes d'information et de communication)
+item3.X-ABLabel:
+NOTE:None
+CATEGORIES:myContacts
+END:VCARD

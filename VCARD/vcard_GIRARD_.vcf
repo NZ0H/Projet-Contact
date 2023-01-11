@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+FN: GIRARD
+N:GIRARD;;;;
+item1.EMAIL;TYPE=INTERNET:jimmy.girard@fr.spiraxsarco.com
+item1.X-ABLabel:
+item2.TEL:05 49 20 03 40
+item2.X-ABLabel:
+item3.ORG:SPIRAX SARCO
+item3.X-ABLabel:
+NOTE:None
+CATEGORIES:myContacts
+END:VCARD
