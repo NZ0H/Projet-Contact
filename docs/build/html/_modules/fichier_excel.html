@@ -1,0 +1,348 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>fichier_excel &mdash; Contact  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Contact
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Fonction du Projet :</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../page_web.html">Fonction Page_web</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projet_contact.html">Fonction projet_contact</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contact.html">Fonction Contact</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fusion.html">Fonction Fusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fichier_excel.html">Fonction Fichier_excel</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Contact</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Module code</a> &raquo;</li>
+        
+      <li>fichier_excel</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for fichier_excel</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">openpyxl</span>
+
+
+<div class="viewcode-block" id="fichier_excel"><a class="viewcode-back" href="../fichier_excel.html#fichier_excel.fichier_excel">[docs]</a><span class="k">def</span> <span class="nf">fichier_excel</span><span class="p">(</span><span class="n">args</span><span class="p">):</span> 
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Cette fonction permet de trier les fichiers excel sélectionné.</span>
+
+<span class="sd">    :param args: Fichier excel.</span>
+<span class="sd">    :type args: str</span>
+<span class="sd">    :returns: Renvoie toutes les données triées.</span>
+<span class="sd">    :rtype: str</span>
+<span class="sd">    :raises: TypeError</span>
+<span class="sd">    :example:</span>
+
+<span class="sd">    ([&quot;Orange&quot;,&quot;SFR&quot;],[[&quot;Paris&quot;,&quot;Poitiers&quot;]],[[&quot;75000&quot;,&quot;86000&quot;]],[[&quot;Fibre&quot;,&quot;Cable&quot;]],[[&quot;Mr&quot;,&quot;Mr&quot;]],[[&quot;Bop&quot;,&quot;Tope&quot;]],[[&quot;Tom&quot;,&quot;Lucas&quot;]],[[&quot;0607080910&quot;,&quot;0605040302&quot;]],[[&quot;Bop.tom@gmail.com&quot;,&quot;Tope.lucas@gmail.com&quot;]])</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">workbook</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">load_workbook</span><span class="p">(</span><span class="s1">&#39;../data/&#39;</span><span class="o">+</span> <span class="n">args</span><span class="p">,</span> <span class="n">data_only</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">titres_onglets</span> <span class="o">=</span> <span class="n">workbook</span><span class="o">.</span><span class="n">sheetnames</span>
+    <span class="n">onglet</span> <span class="o">=</span> <span class="n">workbook</span><span class="p">[</span><span class="n">titres_onglets</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="n">nb_none</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">listes_data_depart</span> <span class="o">=</span> <span class="p">[]</span> 
+    <span class="n">listes_data_traiter</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1">#data recupérer directement dans le excel, sans les trier (apres avoir passer l&#39;étape des suppression de ligne de None)</span>
+    <span class="n">data_nom_entreprise</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">data_lieu</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">data_sujet</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">data_tuteur</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">data_tel</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">data_mail</span><span class="o">=</span><span class="p">[]</span>
+
+    <span class="c1">#data ayant était traité</span>
+    <span class="n">data_code_postal</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">data_prenom_tuteur</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">data_nom_tuteur</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">data_civilite_tuteur</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">data_code_postal</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">data_ville</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">nom_prenom_tmp</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">nom_tmp</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">prenom_tmp</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">valeur_tmp</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">valeur</span><span class="o">=</span><span class="p">[]</span>
+
+    <span class="c1">#ajouts des valeurs du fichier excel dans la liste &#39;listes_data_depart&#39;</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">onglet</span><span class="o">.</span><span class="n">values</span><span class="p">:</span> 
+        <span class="n">listes_data_depart</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">row</span><span class="p">))</span>
+
+    <span class="c1">#suppression du contenue de la liste remplie de None</span>
+    <span class="k">for</span> <span class="n">ligne</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">listes_data_depart</span><span class="p">)):</span>   
+        <span class="k">for</span> <span class="n">non</span> <span class="ow">in</span> <span class="n">listes_data_depart</span><span class="p">[</span><span class="n">ligne</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">non</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">nb_none</span><span class="o">+=</span><span class="mi">1</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">listes_data_depart</span><span class="p">[</span><span class="n">ligne</span><span class="p">])</span><span class="o">==</span><span class="n">nb_none</span><span class="p">:</span>
+            <span class="n">listes_data_depart</span><span class="p">[</span><span class="n">ligne</span><span class="p">]</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="n">nb_none</span><span class="o">=</span><span class="mi">0</span>
+
+    <span class="c1">#si longueur liste différent de 0 alors on ajoute à la listes_data_traiter</span>
+    <span class="k">for</span> <span class="n">valeur</span> <span class="ow">in</span> <span class="n">listes_data_depart</span> <span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">valeur</span><span class="p">)</span><span class="o">!=</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">listes_data_traiter</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">valeur</span><span class="p">)</span>
+
+    <span class="c1">#Traitement des données celon les titres des colonnes, si le titre fait partie des conditions il est ajouté sinon il n&#39;est pas prit en compte</span>
+    <span class="k">for</span> <span class="n">titre</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">listes_data_traiter</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
+        <span class="k">if</span> <span class="n">listes_data_traiter</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">titre</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;Organisme d&#39;accueil&quot;</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">colonne</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">listes_data_traiter</span><span class="p">)):</span>
+                <span class="n">data_nom_entreprise</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">listes_data_traiter</span><span class="p">[</span><span class="n">colonne</span><span class="p">][</span><span class="n">titre</span><span class="p">])</span>
+            <span class="n">data_nom_entreprise</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;Organisme d&#39;accueil&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">listes_data_traiter</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">titre</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Lieu&#39;</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">colonne</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">listes_data_traiter</span><span class="p">)):</span>
+                <span class="n">data_lieu</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">listes_data_traiter</span><span class="p">[</span><span class="n">colonne</span><span class="p">][</span><span class="n">titre</span><span class="p">])</span>
+            <span class="n">data_lieu</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;Lieu&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">listes_data_traiter</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">titre</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Sujet&#39;</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">colonne</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">listes_data_traiter</span><span class="p">)):</span>
+                <span class="n">data_sujet</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">listes_data_traiter</span><span class="p">[</span><span class="n">colonne</span><span class="p">][</span><span class="n">titre</span><span class="p">])</span>
+            <span class="n">data_sujet</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;Sujet&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">listes_data_traiter</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">titre</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Tuteur entreprise&#39;</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">colonne</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">listes_data_traiter</span><span class="p">)):</span>
+                <span class="n">data_tuteur</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">listes_data_traiter</span><span class="p">[</span><span class="n">colonne</span><span class="p">][</span><span class="n">titre</span><span class="p">])</span>
+            <span class="n">data_tuteur</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;Tuteur entreprise&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">listes_data_traiter</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">titre</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Contact tel&#39;</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">colonne</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">listes_data_traiter</span><span class="p">)):</span>
+                <span class="n">data_tel</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">listes_data_traiter</span><span class="p">[</span><span class="n">colonne</span><span class="p">][</span><span class="n">titre</span><span class="p">])</span>
+            <span class="n">data_tel</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;Contact tel&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">listes_data_traiter</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">titre</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Mail&#39;</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">colonne</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">listes_data_traiter</span><span class="p">)):</span>
+                <span class="n">data_mail</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">listes_data_traiter</span><span class="p">[</span><span class="n">colonne</span><span class="p">][</span><span class="n">titre</span><span class="p">])</span>
+            <span class="n">data_mail</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;Mail&#39;</span><span class="p">)</span>
+
+    <span class="n">workbook</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    
+    <span class="c1">#traitement de data_tuteur, si None on ajoute None sinon on sépare le champ de donnée dans une liste</span>
+    <span class="k">for</span> <span class="n">d_t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_tuteur</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">data_tuteur</span><span class="p">[</span><span class="n">d_t</span><span class="p">]</span><span class="o">==</span><span class="kc">None</span><span class="p">:</span>
+            <span class="n">nom_prenom_tmp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data_tuteur</span><span class="p">[</span><span class="n">d_t</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">nom_prenom_tmp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data_tuteur</span><span class="p">[</span><span class="n">d_t</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+    <span class="c1">#séparation de nomn,prenom,civilite</span>
+    <span class="k">for</span> <span class="n">info</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nom_prenom_tmp</span><span class="p">)):</span>
+            <span class="n">data_civilite_tuteur</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nom_prenom_tmp</span><span class="p">[</span><span class="n">info</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">del</span> <span class="n">nom_prenom_tmp</span><span class="p">[</span><span class="n">info</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">n_p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nom_prenom_tmp</span><span class="p">[</span><span class="n">info</span><span class="p">])):</span>
+                <span class="k">if</span> <span class="n">nom_prenom_tmp</span><span class="p">[</span><span class="n">info</span><span class="p">][</span><span class="n">n_p</span><span class="p">]</span><span class="o">.</span><span class="n">isupper</span><span class="p">()</span> <span class="o">==</span> <span class="kc">True</span> <span class="p">:</span>
+                    <span class="n">nom_tmp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nom_prenom_tmp</span><span class="p">[</span><span class="n">info</span><span class="p">][</span><span class="n">n_p</span><span class="p">])</span>
+                <span class="k">else</span> <span class="p">:</span>
+                    <span class="n">prenom_tmp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nom_prenom_tmp</span><span class="p">[</span><span class="n">info</span><span class="p">][</span><span class="n">n_p</span><span class="p">])</span>
+            <span class="n">data_nom_tuteur</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">nom_tmp</span><span class="p">))</span>
+            <span class="n">nom_tmp</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+            <span class="n">data_prenom_tuteur</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">prenom_tmp</span><span class="p">))</span>
+            <span class="n">prenom_tmp</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="c1">#trie la ville est le code postal </span>
+    <span class="k">for</span> <span class="n">d_v</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_lieu</span><span class="p">)):</span>
+        <span class="n">data_code_postal</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Champs vide&#39;</span><span class="p">)</span>
+        <span class="n">valeur_tmp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data_lieu</span><span class="p">[</span><span class="n">d_v</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">valeur_tmp</span><span class="p">[</span><span class="n">d_v</span><span class="p">])):</span>
+            <span class="k">if</span> <span class="n">valeur_tmp</span><span class="p">[</span><span class="n">d_v</span><span class="p">][</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">isdecimal</span><span class="p">()</span> <span class="o">==</span> <span class="kc">True</span> <span class="p">:</span>
+                <span class="n">data_code_postal</span><span class="p">[</span><span class="n">d_v</span><span class="p">]</span><span class="o">=</span><span class="n">valeur_tmp</span><span class="p">[</span><span class="n">d_v</span><span class="p">][</span><span class="n">v</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">valeur_tmp</span><span class="p">[</span><span class="n">d_v</span><span class="p">][</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">isalpha</span><span class="p">()</span> <span class="o">==</span> <span class="kc">True</span> <span class="p">:</span>
+                <span class="n">valeur</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">valeur_tmp</span><span class="p">[</span><span class="n">d_v</span><span class="p">][</span><span class="n">v</span><span class="p">])</span>
+        <span class="n">data_ville</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">valeur</span><span class="p">))</span>
+        <span class="n">valeur</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        
+    <span class="c1">#si un des champs est vide on ajoute len(data_nom_entreprise) fois &#39;Nom_renseigné&#39; , len(data_nom_entreprise) car l&#39;objectif de ce (-&gt;)</span>
+    <span class="c1">#(suite) programme est pour les stages en entreprise donc le champ est forcément remplie (meme si chaque champ de data fait la meme longueur)       </span>
+    <span class="k">for</span> <span class="n">compteur</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_nom_entreprise</span><span class="p">)):</span>  
+        <span class="k">if</span>  <span class="nb">len</span><span class="p">(</span><span class="n">data_civilite_tuteur</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_code_postal</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_mail</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_sujet</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_ville</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_tel</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_civilite_tuteur</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span> <span class="p">:</span>
+                <span class="k">for</span> <span class="n">rep</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_nom_entreprise</span><span class="p">)):</span>
+                    <span class="n">data_civilite_tuteur</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Non_renseigné&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_code_postal</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span> <span class="p">:</span>
+                <span class="k">for</span> <span class="n">rep</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_nom_entreprise</span><span class="p">)):</span>
+                    <span class="n">data_code_postal</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Non_renseigné&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_mail</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span> <span class="p">:</span>
+                <span class="k">for</span> <span class="n">rep</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_nom_entreprise</span><span class="p">)):</span>
+                    <span class="n">data_mail</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Non_renseigné&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_sujet</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span> <span class="p">:</span>
+                <span class="k">for</span> <span class="n">rep</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_nom_entreprise</span><span class="p">)):</span>
+                    <span class="n">data_sujet</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Non_renseigné&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_ville</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span> <span class="p">:</span>
+                <span class="k">for</span> <span class="n">rep</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_nom_entreprise</span><span class="p">)):</span>
+                    <span class="n">data_ville</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Non_renseigné&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_tel</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span> <span class="p">:</span>
+                <span class="k">for</span> <span class="n">rep</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_nom_entreprise</span><span class="p">)):</span>
+                    <span class="n">data_tel</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Non_renseigné&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data_nom_entreprise</span><span class="p">,</span><span class="n">data_ville</span><span class="p">,</span><span class="n">data_code_postal</span><span class="p">,</span><span class="n">data_sujet</span><span class="p">,</span><span class="n">data_civilite_tuteur</span><span class="p">,</span><span class="n">data_nom_tuteur</span><span class="p">,</span><span class="n">data_prenom_tuteur</span><span class="p">,</span><span class="n">data_tel</span><span class="p">,</span><span class="n">data_mail</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2023, Hamon Enzo et Chapus Anthony.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

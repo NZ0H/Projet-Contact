@@ -1,16 +1,20 @@
-.. Projet-Contact documentation master file, created by
-   sphinx-quickstart on Sun Nov 27 18:32:36 2022.
+.. Contact documentation master file, created by
+   sphinx-quickstart on Wed Jan 11 18:03:39 2023.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Projet-Contact's documentation!
-==========================================
+SAE 15 - Traiter des données
+===================================
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :maxdepth: 1
+   :caption: Fonction du Projet :
 
-   code
+   page_web
+   projet_contact
+   contact
+   fusion
+   fichier_excel
 
 Indices and tables
 ==================

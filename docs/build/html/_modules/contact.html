@@ -1,0 +1,264 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>contact &mdash; Contact  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Contact
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Fonction du Projet :</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../page_web.html">Fonction Page_web</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projet_contact.html">Fonction projet_contact</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contact.html">Fonction Contact</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fusion.html">Fonction Fusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fichier_excel.html">Fonction Fichier_excel</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Contact</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Module code</a> &raquo;</li>
+        
+      <li>contact</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for contact</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">openpyxl</span>
+<span class="kn">from</span> <span class="nn">fusion</span> <span class="kn">import</span> <span class="n">fusion</span>
+
+<div class="viewcode-block" id="contact"><a class="viewcode-back" href="../contact.html#contact.contact">[docs]</a><span class="k">def</span> <span class="nf">contact</span><span class="p">(</span><span class="n">args_sortie</span><span class="p">,</span><span class="n">valeur_tmp_fct2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Cette fonction permet de créer un répertoire où se situera tous les fichiers vcard et xlsx</span>
+
+<span class="sd">    :param args_sortie: Fichier où se situera noter répertoire.</span>
+<span class="sd">    :type args_sortie: str</span>
+<span class="sd">    :param valeur_tmp_fct2: Toutes les données utiles tels que Entreprise, ville , etc ...</span>
+<span class="sd">    :type valeur_tmp_fct2: str</span>
+<span class="sd">    :returns: Renvoie donc un répertoire avec des fichiers vcard et xlsx.</span>
+<span class="sd">    :rtype: int</span>
+<span class="sd">    :raises: TypeError</span>
+<span class="sd">    :example:</span>
+
+<span class="sd">    Vcard :</span>
+<span class="sd">        BEGIN:VCARD \n      </span>
+<span class="sd">        VERSION:3.0 \n</span>
+<span class="sd">        FN:Ronan DE KERMADEC \n</span>
+<span class="sd">        N:DE KERMADEC;Ronan;;; \n</span>
+<span class="sd">        item1.EMAIL;TYPE=INTERNET:ronan.dekermadec@e-qual.fr \n</span>
+<span class="sd">        item1.X-ABLabel: \n</span>
+<span class="sd">        item2.TEL:06.17.45.12.75 \n</span>
+<span class="sd">        item2.X-ABLabel: \n</span>
+<span class="sd">        item3.ORG:SA E-QUAL \n</span>
+<span class="sd">        item3.X-ABLabel: \n</span>
+<span class="sd">        NOTE:Refonte de l&#39;infrastructure Active Directory basé sur Windows Server 2019 \n</span>
+<span class="sd">        CATEGORIES:myContacts \n</span>
+<span class="sd">        END:VCARD</span>
+
+<span class="sd">    xlsx : </span>
+<span class="sd">            Entreprise | Ville | Code postal | Civilite | Nom | Prénom | Sujet |       Email       | Telephone</span>
+<span class="sd">               Orange  | Paris |    75000    |    Mr    | Bop |  Tom   | Fibre | Bop.tom@gmail.com | 06.07.08.09.10</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">all_value</span><span class="o">=</span><span class="n">valeur_tmp_fct2</span>
+    <span class="n">colonne</span><span class="o">=</span><span class="n">fusion</span><span class="p">(</span><span class="n">all_value</span><span class="p">)</span>
+
+    <span class="c1">#Creation du fichier .xlsx</span>
+    <span class="k">if</span> <span class="n">args_sortie</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">args_sortie</span><span class="p">)</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span> <span class="o">==</span> <span class="s1">&#39;xlsx&#39;</span><span class="p">:</span>
+      
+        <span class="n">wb_out</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">Workbook</span><span class="p">()</span>
+        <span class="n">ws1</span> <span class="o">=</span> <span class="n">wb_out</span><span class="o">.</span><span class="n">active</span>
+        <span class="n">ws1</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Etudiants&quot;</span>
+        
+        <span class="n">ws1</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="s2">&quot;Nom Entreprise&quot;</span><span class="p">,</span><span class="s2">&quot;Ville&quot;</span><span class="p">,</span><span class="s2">&quot;Code Postal&quot;</span><span class="p">,</span><span class="s2">&quot;Sujet&quot;</span><span class="p">,</span><span class="s2">&quot;Civilité&quot;</span><span class="p">,</span><span class="s2">&quot;Nom&quot;</span><span class="p">,</span><span class="s2">&quot;Prénom&quot;</span><span class="p">,</span><span class="s2">&quot;Téléphone&quot;</span><span class="p">,</span><span class="s2">&quot;Email&quot;</span><span class="p">])</span> 
+        <span class="k">for</span> <span class="n">entreprise</span><span class="p">,</span><span class="n">ville</span><span class="p">,</span><span class="n">code_postal</span><span class="p">,</span><span class="n">sujet</span><span class="p">,</span><span class="n">civilite</span><span class="p">,</span><span class="n">nom</span><span class="p">,</span><span class="n">prenom</span><span class="p">,</span><span class="n">tel</span><span class="p">,</span><span class="n">email</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">colonne</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">colonne</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">colonne</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">colonne</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="n">colonne</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span><span class="n">colonne</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span><span class="n">colonne</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span><span class="n">colonne</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span><span class="n">colonne</span><span class="p">[</span><span class="mi">8</span><span class="p">]):</span>
+            <span class="n">ws1</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">entreprise</span><span class="p">,</span><span class="n">ville</span><span class="p">,</span><span class="n">code_postal</span><span class="p">,</span><span class="n">sujet</span><span class="p">,</span><span class="n">civilite</span><span class="p">,</span><span class="n">nom</span><span class="p">,</span><span class="n">prenom</span><span class="p">,</span><span class="n">tel</span><span class="p">,</span><span class="n">email</span><span class="p">])</span>
+        <span class="n">wb_out</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;../Retour_excel/&#39;</span><span class="o">+</span><span class="n">args_sortie</span><span class="p">)</span>
+
+    <span class="c1">#Creation des fichiers .vcard</span>
+    <span class="k">if</span> <span class="n">args_sortie</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">args_sortie</span><span class="p">)</span><span class="o">-</span><span class="mi">5</span><span class="p">:]</span> <span class="o">==</span> <span class="s1">&#39;vcard&#39;</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">num_c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">colonne</span><span class="p">[</span><span class="mi">5</span><span class="p">])):</span>
+            <span class="n">f</span><span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../VCARD/vcard_</span><span class="si">{}</span><span class="s2">_</span><span class="si">{}</span><span class="s2">.vcf&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">colonne</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="n">num_c</span><span class="p">],</span><span class="n">colonne</span><span class="p">[</span><span class="mi">6</span><span class="p">][</span><span class="n">num_c</span><span class="p">]),</span><span class="s2">&quot;w&quot;</span><span class="p">)</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;BEGIN:VCARD</span><span class="se">\n</span><span class="s2">VERSION:3.0</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;FN:</span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">colonne</span><span class="p">[</span><span class="mi">6</span><span class="p">][</span><span class="n">num_c</span><span class="p">],</span><span class="n">colonne</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="n">num_c</span><span class="p">]))</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;N:</span><span class="si">{}</span><span class="s2">;</span><span class="si">{}</span><span class="s2">;;;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">colonne</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="n">num_c</span><span class="p">],</span><span class="n">colonne</span><span class="p">[</span><span class="mi">6</span><span class="p">][</span><span class="n">num_c</span><span class="p">]))</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;item1.EMAIL;TYPE=INTERNET:</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">colonne</span><span class="p">[</span><span class="mi">8</span><span class="p">][</span><span class="n">num_c</span><span class="p">]))</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;item1.X-ABLabel:</span><span class="se">\n</span><span class="s2">item2.TEL:</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">colonne</span><span class="p">[</span><span class="mi">7</span><span class="p">][</span><span class="n">num_c</span><span class="p">]))</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;item2.X-ABLabel:</span><span class="se">\n</span><span class="s2">item3.ORG:</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">colonne</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">num_c</span><span class="p">]))</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;item3.X-ABLabel:</span><span class="se">\n</span><span class="s2">NOTE:</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">colonne</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="n">num_c</span><span class="p">]))</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;CATEGORIES:myContacts</span><span class="se">\n</span><span class="s2">END:VCARD&quot;</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2023, Hamon Enzo et Chapus Anthony.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
