@@ -12,6 +12,7 @@ from fichier_excel import fichier_excel
 from contact import contact
 from page_web import page_web
 import argparse
+from sys import exit
 
 
 valeur_tmp_fct2=[]
@@ -34,20 +35,27 @@ def argument():
     """
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('-f','--file',type=str,required=True , nargs='+')
-    parser.add_argument('-s','--sortie',type=str,nargs='+')
-    parser.add_argument('-d','--dir',type=str)
+    parser.add_argument('-f','--file',type=str, required=True , nargs='+')
+    parser.add_argument('-s','--sortie',type=str, required=False , nargs='+')
+    parser.add_argument('-d','--dir',type=str, required=False )
     args=parser.parse_args()
     return args
 
 arguments=argument()
 
 
-try:
-    for nb_arg in arguments.file :
-        valeur_tmp_fct2.append(fichier_excel(nb_arg))
-    for nb_arg in arguments.sortie :
-        contact(nb_arg,valeur_tmp_fct2) 
-    page_web(arguments.dir,valeur_tmp_fct2)
-except:
-    print("Erreur durant l'utilisation du programme")
+def main():
+    try :
+        for nb_arg in arguments.file :
+            valeur_tmp_fct2.append(fichier_excel(nb_arg))
+
+        if arguments.sortie :
+            for nb_arg in arguments.sortie :
+                contact(nb_arg,valeur_tmp_fct2) 
+        if arguments.dir:
+            page_web(arguments.dir,valeur_tmp_fct2)
+    except :
+        print("Erreur durant l'utilisation du programme")
+if __name__ == '__main__':
+    main()
+    exit(1)
