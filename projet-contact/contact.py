@@ -1,15 +1,53 @@
+'''
+
+    module:: contact.py
+   :platform: Unix, windows
+   :synopsis: création d'un répertoire ou il y aura tous les fichiers vcard et xlsx.
+
+    moduleauthor:: Hamon Enzo <enzo.hamon@etu.univ-poitiers.fr>, Chapus Anthony <anthony.chapus@etu.univ-poitiers.fr>
+
+'''
+
 import openpyxl
 from fusion import fusion
 
 def contact(args_sortie,valeur_tmp_fct2):
     """
-    Création : 
-    Modification
+    Cette fonction permet de créer un répertoire où se situera tous les fichiers vcard et xlsx
+
+    :param args_sortie: Fichier où se situera noter répertoire.
+    :type args_sortie: str
+    :param valeur_tmp_fct2: Toutes les données utiles tels que Entreprise, ville , etc ...
+    :type valeur_tmp_fct2: str
+    :returns: Renvoie donc un répertoire avec des fichiers vcard et xlsx.
+    :rtype: int
+    :raises: TypeError
+    :example:
+
+    Vcard :
+        BEGIN:VCARD
+        VERSION:3.0
+        FN:Ronan DE KERMADEC
+        N:DE KERMADEC;Ronan;;;
+        item1.EMAIL;TYPE=INTERNET:ronan.dekermadec@e-qual.fr
+        item1.X-ABLabel:
+        item2.TEL:06.17.45.12.75
+        item2.X-ABLabel:
+        item3.ORG:SA E-QUAL
+        item3.X-ABLabel:
+        NOTE:Refonte de l'infrastructure Active Directory basé sur Windows Server 2019
+        CATEGORIES:myContacts
+        END:VCARD
+
+    xlsx : 
+            Entreprise | Ville | Code postal | Civilite | Nom | Prénom | Sujet |       Email       | Telephone
+               Orange  | Paris |    75000    |    Mr    | Bop |  Tom   | Fibre | Bop.tom@gmail.com | 06.07.08.09.10
+
     """
 
     all_value=valeur_tmp_fct2
     colonne=fusion(all_value)
-
+    print(colonne)
     if args_sortie[len(args_sortie)-4:] == 'xlsx':
       
         wb_out = openpyxl.Workbook()

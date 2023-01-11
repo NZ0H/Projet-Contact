@@ -1,12 +1,28 @@
+'''
+
+    module:: fusion.py
+   :platform: Unix, windows
+   :synopsis: Permet la fusion des données et de supprimer les doubles.
+
+    moduleauthor:: Hamon Enzo <enzo.hamon@etu.univ-poitiers.fr>, Chapus Anthony <anthony.chapus@etu.univ-poitiers.fr>
+
+'''
+
+
 def fusion(data):
     """
-     Création : Enzo, 06/01/2023
-     Modification : 07/01/2023
+    Cette fonction permet de traité et de fusionner les données utiles, elle suprime également les doubles.
 
+    :param args: Toutes les données brut des fichiers excel.
+    :type args: str
+    :returns: Renvoie une lise des données utiles.
+    :rtype: int
+    :raises: TypeError
+    :example:
 
-
-     
+    (["Orange","SFR"],[["Paris","Poitiers"]],[["75000","86000"]],[["Fibre","Cable"]],[["Mr","Mr"]],[["Bop","Tope"]],[["Tom","Lucas"]],[["0607080910","0605040302"]],[["Bop.tom@gmail.com","Tope.lucas@gmail.com"]])
     """
+
     #liste avec toute les données assemblées
     data_nom_entreprise=[]
     data_ville=[]

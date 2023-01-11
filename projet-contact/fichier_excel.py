@@ -1,18 +1,34 @@
+'''
+
+    module:: fichier_excel.py
+   :platform: Unix, windows
+   :synopsis: Trier les fichiers excels
+
+    moduleauthor:: Hamon Enzo <enzo.hamon@etu.univ-poitiers.fr>, Chapus Anthony <anthony.chapus@etu.univ-poitiers.fr>
+
+'''
+
+
 import openpyxl
 
 
 
 
-def fichier_excel(args) -> str : 
-    """ Projet-Contact
-    :module:fichier_excel
-    :author : Enzo
-    :created : 11/11/2022
-    :modified : 02/01/2023
+def fichier_excel(args): 
+    """
+    Cette fonction permet de trier les fichiers excel sélectionné.
 
-    
+    :param args: Fichier excel.
+    :type args: str
+    :returns: Renvoie toutes les données triées.
+    :rtype: str
+    :raises: TypeError
+    :example:
+
+    (["Orange","SFR"],[["Paris","Poitiers"]],[["75000","86000"]],[["Fibre","Cable"]],[["Mr","Mr"]],[["Bop","Tope"]],[["Tom","Lucas"]],[["0607080910","0605040302"]],[["Bop.tom@gmail.com","Tope.lucas@gmail.com"]])
 
     """
+
     workbook = openpyxl.load_workbook('../data/'+ args, data_only = True)
     titres_onglets = workbook.sheetnames
     onglet = workbook[titres_onglets[0]]
