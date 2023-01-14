@@ -34,15 +34,15 @@ arguments=argument()
 
 
 def main():
-    
+    arguments=argument()
     for nb_arg in arguments.file :
         valeur_tmp_fct2.append(fichier_excel(nb_arg))
+
     if arguments.sortie :
         for nb_arg in arguments.sortie :
             contact(nb_arg,valeur_tmp_fct2) 
     if arguments.dir:
-            page_web(arguments.dir,valeur_tmp_fct2)
-    
+        page_web(arguments.dir,valeur_tmp_fct2)
 if __name__ == '__main__':
     main()
     exit(0)
