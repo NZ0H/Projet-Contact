@@ -30,9 +30,6 @@ def argument():
     args=parser.parse_args()
     return args
 
-arguments=argument()
-
-
 def main():
     arguments=argument()
     for nb_arg in arguments.file :
